@@ -6,6 +6,7 @@ export default {
       colors: {
         'blue': '#0075FF',
         'gray': '#8692A6',
+        'whiteBg': 'rgba(163, 163, 163, 0.09)',
       },
     },
   },

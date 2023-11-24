@@ -3,37 +3,52 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import InputField from '../../components/InputField';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import heroImg from '../../assets/woman-hero.svg';
-import { registerUser } from '../../store/userSlice';
-import { AppDispatch } from '../../store/store';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const RegisterSchema = Yup.object().shape({
-  fullName: Yup.string().required('Full Name is required'),
+  firstName: Yup.string().required('First Name is required'),
+  lastName: Yup.string().required('Last Name is required'),
   email: Yup.string()
     .email('Invalid email')
     .required('Please enter your email address'),
   phoneNumber: Yup.string().required('Phone Number is required'),
-  password: Yup.string().required('Password is required'),
+  password: Yup.string().min(8).required('Password is required'),
 });
 
 const Register = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
 
   const register = async (values: {
-    fullName: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phoneNumber: string;
     password: string;
   }) => {
-    const { fullName, email, phoneNumber, password } = values;
+    const { firstName, lastName, email, phoneNumber, password } = values;
     setIsButtonDisabled(true);
     try {
-      console.log(fullName, email, phoneNumber, password);
-      dispatch(registerUser({ fullName, email, phoneNumber, password }));
-    } catch (error) {
-      console.log(error);
+      await axios.post(
+        `/users?redirect_url=${import.meta.env.VITE_FRONTEND_URL}/login`,
+        {
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone_number: phoneNumber,
+          password,
+        },
+      );
+      toast.success('Please check your email address to continue', {
+        autoClose: 50000,
+      });
+
+      setIsButtonDisabled(false);
+    } catch (error: any) {
+      const err = JSON.parse(error.response.data.body);
+      toast.error(err.detail);
+      setIsButtonDisabled(false);
     }
   };
 
@@ -41,11 +56,12 @@ const Register = () => {
 
   return (
     <div className="flex items-center justify-between">
-      <section className="py-10 mx-auto">
-        <h1 className="font-bold text-2xl text-center">Create Account</h1>
+      <section className=" mx-auto">
+        <h1 className="font-bold text-2xl text-center mt-3">Create Account</h1>
         <Formik
           initialValues={{
-            fullName: '',
+            firstName: '',
+            lastName: '',
             email: '',
             phoneNumber: '',
             password: '',
@@ -54,8 +70,9 @@ const Register = () => {
           onSubmit={register}
         >
           {(formik) => (
-            <Form className="flex flex-col mx-auto mt-10">
-              <InputField label="Full Name" name="fullName" />
+            <Form className="flex flex-col mx-auto mt-5">
+              <InputField label="First Name" name="firstName" type="text" />
+              <InputField label="Last Name" name="lastName" type="text" />
               <InputField label="Email address" name="email" type="email" />
               <InputField label="Phone Number" name="phoneNumber" type="tel" />
               <InputField

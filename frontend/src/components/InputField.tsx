@@ -34,7 +34,7 @@ const InputField: React.FC<InputFieldProps> = ({
     );
 
   return (
-    <div className="flex flex-col mx-auto mb-6">
+    <div className="flex flex-col mx-auto mb-4">
       <label htmlFor={name} className="font-semibold">
         {label}
       </label>
