@@ -14,8 +14,10 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const user: UserContextData = useContext(UserContext);
 
+  console.log(user?.isProfileLoading);
+
   return (
-    <div>
+    <>
       <Sidebar />
       <div className="lg:pl-56 lg:pr-10 py-12 lg:py-10 px-2 bg-whiteBg min-h-screen">
         <TopBar />
@@ -48,7 +50,7 @@ const Dashboard = () => {
                 <button
                   type="button"
                   className="flex gap-1 items-center bg-blue rounded-md px-5 py-2 text-white mt-5"
-                  // onClick={}
+                  onClick={() => navigate('/dashboard/attach-invoice')}
                 >
                   <img src={attach_white} alt="create" />
                   Attach Invoice
@@ -61,7 +63,7 @@ const Dashboard = () => {
                 <h2 className="text-blue font-bold">Invoices</h2>
                 <button
                   type="button"
-                  onClick={() => navigate('/dashboard/')}
+                  onClick={() => navigate('/dashboard/invoices')}
                   className="text-gray text-sm font-light pt-2"
                 >
                   View All...
@@ -73,7 +75,7 @@ const Dashboard = () => {
                   <tr className="[&>*]:text-left text-gray text-sm">
                     <th>Invoice #</th>
                     <th>Amount</th>
-                    <th>Date</th>
+                    <th className="flex justify-end">Date</th>
                   </tr>
 
                   {/* {user?.customers?.slice(0, 10).map((customer) => (
@@ -95,7 +97,7 @@ const Dashboard = () => {
               </p>
             )} */}
 
-              <p className="text-center sm:my-20 my-10 text-gray text-sm">
+              <p className="text-center sm:my-36 my-10 text-gray text-sm">
                 No invoices yet
               </p>
             </div>
@@ -118,11 +120,10 @@ const Dashboard = () => {
                 <tr className="[&>*]:text-left text-gray text-sm">
                   <th>Name</th>
                   <th>Contact Information</th>
-                  <th>Date Created</th>
+                  <th className="flex justify-end">Date Created</th>
                 </tr>
-
-                {user?.customers?.slice(0, 10).map((customer) => (
-                  <tr key={customer.id} className="[&>*]:py-5 text-sm">
+                {user?.customers?.slice(0, 8).map((customer) => (
+                  <tr key={customer.id} className="[&>*]:py-2 text-sm">
                     <td className="flex items-center gap-x-2">
                       <img
                         src={person}
@@ -132,13 +133,15 @@ const Dashboard = () => {
                       {customer.name}
                     </td>
                     <td>{customer.email}</td>
-                    <td>{convertTimestampToFormattedDate(customer.created)}</td>
+                    <td className="flex justify-end">
+                      {convertTimestampToFormattedDate(customer.created)}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
 
-            {user?.isProfileLoading && (
+            {user?.isProfileLoading && user?.customers?.length === 0 && (
               <p className="text-center sm:my-40 my-10 text-gray text-sm">
                 Loading...
               </p>
@@ -152,7 +155,7 @@ const Dashboard = () => {
           </section>
         </section>
       </div>
-    </div>
+    </>
   );
 };
 

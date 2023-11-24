@@ -78,7 +78,7 @@ const Login = () => {
           validationSchema={LoginSchema}
           onSubmit={logIn}
         >
-          {(formik) => (
+          {() => (
             <Form className="flex flex-col mx-auto mt-5">
               <InputField label="Email address" name="email" type="email" />
               <InputField
@@ -90,7 +90,7 @@ const Login = () => {
               {/* <p className="text-gray text-[13px] text-end">Forgot password?</p> */}
 
               <button
-                disabled={!formik.isValid || !formik.dirty || isButtonDisabled}
+                disabled={isButtonDisabled}
                 type="submit"
                 className="mt-6 bg-blue disabled:bg-gray sm:w-[30rem] w-80 mx-auto text-[#ffffff] font-bold py-5 rounded-md"
               >

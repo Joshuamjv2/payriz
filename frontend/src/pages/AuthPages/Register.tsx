@@ -69,7 +69,7 @@ const Register = () => {
           validationSchema={RegisterSchema}
           onSubmit={register}
         >
-          {(formik) => (
+          {() => (
             <Form className="flex flex-col mx-auto mt-5">
               <InputField label="First Name" name="firstName" type="text" />
               <InputField label="Last Name" name="lastName" type="text" />
@@ -88,7 +88,7 @@ const Register = () => {
               </p>
 
               <button
-                disabled={!formik.isValid || !formik.dirty || isButtonDisabled}
+                disabled={isButtonDisabled}
                 type="submit"
                 className="mt-6 bg-blue disabled:bg-gray sm:w-[30rem] w-80 mx-auto text-[#ffffff] font-bold py-5 rounded-md"
               >

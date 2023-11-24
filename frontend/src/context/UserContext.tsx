@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 
 interface Props {
   children: ReactNode;
@@ -9,13 +10,13 @@ interface Props {
 
 export const UserContext = createContext({});
 
-// ... (existing imports)
-
 const Context = ({ children }: Props) => {
   const [user, setUser] = useState({});
   const [_id, setUserId] = useState(null);
   const [customers, setCustomers] = useState([]);
   const [isProfileLoading, setIsProfileLoading] = useState(true); // Add loading state
+
+  const location = useLocation();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -59,7 +60,7 @@ const Context = ({ children }: Props) => {
 
     fetchUser();
     fetchCustomers();
-  }, [_id]);
+  }, [_id, location.pathname]);
 
   return (
     <UserContext.Provider value={{ user, customers, isProfileLoading }}>

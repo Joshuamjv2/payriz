@@ -61,21 +61,21 @@ const Sidebar = () => {
     },
     {
       name: 'Attach Invoice',
-      href: '/dashboard/profiles',
+      href: '/dashboard/attach-invoice',
       icon: attach,
-      //   current: location.pathname === '/dashboard/profiles',
+      current: location.pathname === '/dashboard/attach-invoice',
     },
     {
-      name: 'View All Invoices',
-      href: '/dashboard/profiles',
+      name: 'All Invoices',
+      href: '/dashboard/invoices',
       icon: view,
-      //   current: location.pathname === '/dashboard/profiles',
+      current: location.pathname === '/dashboard/invoices',
     },
     {
       name: 'Wallet',
-      href: '/dashboard/profiles',
+      href: '/dashboard/wallet',
       icon: wallet,
-      //   current: location.pathname === '/dashboard/profiles',
+      current: location.pathname === '/dashboard/wallet',
     },
   ];
   const divStyle = {
@@ -85,7 +85,7 @@ const Sidebar = () => {
 
   const drawer = (
     <div
-      className="flex grow flex-col overflow-y-auto shadow-md pl-4 pr-7 h-screen"
+      className="flex grow flex-col overflow-y-auto shadow-md pl-4 pr-7 h-screen [&::-webkit-scrollbar]:hidden"
       style={divStyle}
     >
       <img src={logo} alt="Logo" className="w-[50px] mx-auto mt-5" />
@@ -94,7 +94,7 @@ const Sidebar = () => {
         <p className="pt-2 font-bold text-sm">
           {user?.user!.firstName} {user?.user!.lastName}
         </p>
-        <button disabled className="mt-1 text-xs font-semibold text-gray">
+        <button disabled className="mt-1 text-xs font-semibold text-white">
           Edit profile
         </button>
       </div>

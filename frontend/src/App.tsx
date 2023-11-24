@@ -10,6 +10,9 @@ import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
 import Profiles from './pages/DashboardPages/Profiles';
 import Context from './context/UserContext';
+import AttachInvoice from './pages/DashboardPages/AttachInvoice';
+import AllInvoices from './pages/DashboardPages/AllInvoices';
+import Wallet from './pages/DashboardPages/Wallet';
 
 function App() {
   const isAuthenticated = !!Cookies.get('token');
@@ -30,6 +33,12 @@ function App() {
               element={<CreateProfile />}
             />
             <Route path="/dashboard/profiles" element={<Profiles />} />
+            <Route
+              path="/dashboard/attach-invoice"
+              element={<AttachInvoice />}
+            />
+            <Route path="/dashboard/invoices" element={<AllInvoices />} />
+            <Route path="/dashboard/wallet" element={<Wallet />} />
           </Route>
           <Route path="" element={<AuthRoute />}>
             <Route path="/login" element={<Login />} />

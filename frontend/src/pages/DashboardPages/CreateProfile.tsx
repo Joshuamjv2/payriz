@@ -9,6 +9,7 @@ import { UserContextData } from '../../context/type';
 import { UserContext } from '../../context/UserContext';
 import Modal from 'react-modal';
 import success from '../../assets/success.svg';
+import { useNavigate } from 'react-router-dom';
 
 const customStyles = {
   content: {
@@ -36,6 +37,7 @@ const CreateProfile = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
   const user: UserContextData = useContext(UserContext);
+  const navigate = useNavigate();
 
   const createProfile = async (
     values: {
@@ -57,7 +59,9 @@ const CreateProfile = () => {
         address,
       });
       resetForm();
-      setSuccessModalIsOpen(true);
+      navigate('/dashboard');
+      toast.success('Profile created successfully');
+      // setSuccessModalIsOpen(true);
 
       setIsButtonDisabled(false);
     } catch (error: any) {
@@ -69,7 +73,7 @@ const CreateProfile = () => {
   };
 
   return (
-    <div className="">
+    <>
       <Sidebar />
       <div className="lg:pl-56 lg:pr-10 py-12 lg:py-10 px-2 bg-whiteBg min-h-screen flex flex-col justify-center">
         <section className="bg-white rounded-lg py-20 px-11 shadow-sm">
@@ -88,7 +92,7 @@ const CreateProfile = () => {
             validationSchema={createProfileSchema}
             onSubmit={createProfile}
           >
-            {(formik) => (
+            {() => (
               <Form className="mx-auto mt-5">
                 <div className="grid sm:grid-cols-2 gap-x-16">
                   <InputField
@@ -120,9 +124,7 @@ const CreateProfile = () => {
                 {/* <p className="text-gray text-[13px] text-end">Forgot password?</p> */}
 
                 <button
-                  disabled={
-                    !formik.isValid || !formik.dirty || isButtonDisabled
-                  }
+                  disabled={isButtonDisabled}
                   type="submit"
                   className="mt-6 bg-blue disabled:bg-gray w-full sm:w-80 mx-auto justify-center flex text-[#ffffff] font-bold py-5 rounded-md"
                 >
@@ -140,19 +142,19 @@ const CreateProfile = () => {
         style={customStyles}
         contentLabel="Success Modal"
       >
-        <button
+        {/* <button
           onClick={() => setSuccessModalIsOpen(false)}
           className="absolute top-5 right-5"
         >
           X
-        </button>
+        </button> */}
         <img src={success} alt="Success" className="mx-auto" />
         <h2 className="font-bold pt-2 text-center">Successful</h2>
         <p className="text-gray text-sm pt-2 text-center">
           Profile created successfully
         </p>
       </Modal>
-    </div>
+    </>
   );
 };
 
