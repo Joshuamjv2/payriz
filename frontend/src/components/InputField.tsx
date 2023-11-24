@@ -8,6 +8,7 @@ interface InputFieldProps {
   type?: string;
   placeholder?: string;
   passwordInput?: boolean;
+  width?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -16,6 +17,7 @@ const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   type,
   passwordInput,
+  width,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState('password');
@@ -34,7 +36,7 @@ const InputField: React.FC<InputFieldProps> = ({
     );
 
   return (
-    <div className="flex flex-col mx-auto mb-4">
+    <div className={`flex flex-col mx-auto mb-4 ${width ? 'w-full' : ''}`}>
       <label htmlFor={name} className="font-semibold">
         {label}
       </label>
@@ -44,13 +46,14 @@ const InputField: React.FC<InputFieldProps> = ({
             <input
               {...field}
               placeholder={placeholder || label}
-              className="mt-1 focus:border-2 border-[1px] rounded-md py-5 px-[10px] sm:w-[30rem] w-80 bg-transparent border-gray placeholder:text-gray focus:outline-none"
+              className={`mt-1 focus:border-2 border-[1px] rounded-md py-3 px-[10px] ${
+                width || 'sm:w-[30rem] w-80'
+              } bg-transparent border-gray placeholder:text-gray focus:outline-none`}
               type={type || showPassword}
               {...props}
             />
           )}
         </Field>
-
         {passwordInput && (
           <span
             className="absolute top-[40%] right-[3%]"

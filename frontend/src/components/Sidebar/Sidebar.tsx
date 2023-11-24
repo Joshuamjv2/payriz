@@ -137,7 +137,7 @@ const Sidebar = () => {
       <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-[186px] lg:flex-col">
         {drawer}
       </div>
-      <div className={`bg-white block lg:hidden fixed left-0`}>
+      <div className={`bg-white block lg:hidden fixed left-0 z-50`}>
         <Hamburger openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <div className={openDrawer ? 'mt-2 drop-shadow-2xl' : ''}>
           {openDrawer && <div className="fixed w-[186px]">{drawer}</div>}
