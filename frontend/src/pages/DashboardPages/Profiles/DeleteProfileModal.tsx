@@ -51,7 +51,7 @@ const DeleteProfileModal = ({
         x
       </button>
       Delete
-      {customerInfo.name}
+      {customerInfo?.name}
     </Modal>
   );
 };
