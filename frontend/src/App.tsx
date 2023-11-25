@@ -14,9 +14,11 @@ import AuthRoute from './hooks/AuthRoute';
 import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
 import Profiles from './pages/DashboardPages/Profiles/Profiles';
-import AttachInvoice from './pages/DashboardPages/AttachInvoice';
+import AttachInvoice from './pages/DashboardPages/AttachInvoice/AttachInvoice';
 import AllInvoices from './pages/DashboardPages/AllInvoices';
 import Wallet from './pages/DashboardPages/Wallet';
+import SendInvoice from './pages/DashboardPages/AttachInvoice/SendInvoice';
+import PaymentStatus from './pages/PublicPages/PaymentStatus';
 
 function App() {
   const isAuthenticated = !!Cookies.get('token');
@@ -25,6 +27,8 @@ function App() {
     <Router>
       <ToastContainer />
       <Routes>
+        <Route path="/payment-status" element={<PaymentStatus />} />
+
         <Route
           path="/"
           element={
@@ -36,6 +40,11 @@ function App() {
           <Route path="/dashboard/create-profile" element={<CreateProfile />} />
           <Route path="/dashboard/profiles" element={<Profiles />} />
           <Route path="/dashboard/attach-invoice" element={<AttachInvoice />} />
+          <Route
+            path="/dashboard/attach-invoice/send"
+            element={<SendInvoice />}
+          />
+
           <Route path="/dashboard/invoices" element={<AllInvoices />} />
           <Route path="/dashboard/wallet" element={<Wallet />} />
         </Route>

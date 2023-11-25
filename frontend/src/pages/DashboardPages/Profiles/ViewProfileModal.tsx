@@ -3,6 +3,7 @@ import person2 from '../../../assets/person2.svg';
 import { UserContextData } from '../../../context/type';
 import { UserContext } from '../../../context/UserContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const customStyles: Styles = {
   content: {
@@ -33,8 +34,13 @@ const ViewProfileModal = ({
   activeViewId: string;
 }) => {
   const user: UserContextData = useContext(UserContext);
+  const navigate = useNavigate();
 
   const customerInfo = user?.customers!.find((obj) => obj.id === activeViewId);
+
+  const handleAttach = () => {
+    navigate('/dashboard/attach-invoice', { state: { customerInfo } });
+  };
 
   return (
     <Modal
@@ -59,7 +65,7 @@ const ViewProfileModal = ({
       <p className="pt-3 text-gray">{customerInfo?.phone}</p>
 
       <button
-        //   onClick={}
+        onClick={handleAttach}
         type="submit"
         className="mt-5 mx-auto bg-blue disabled:bg-gray px-10 justify-center flex text-[#ffffff] font-bold py-[10px] rounded-md"
       >

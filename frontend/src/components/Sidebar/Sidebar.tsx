@@ -63,7 +63,9 @@ const Sidebar = () => {
       name: 'Attach Invoice',
       href: '/dashboard/attach-invoice',
       icon: attach,
-      current: location.pathname === '/dashboard/attach-invoice',
+      current:
+        location.pathname === '/dashboard/attach-invoice' ||
+        location.pathname === '/dashboard/attach-invoice/send',
     },
     {
       name: 'All Invoices',

@@ -9,6 +9,7 @@ interface InputFieldProps {
   placeholder?: string;
   passwordInput?: boolean;
   width?: string;
+  step?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -18,6 +19,7 @@ const InputField: React.FC<InputFieldProps> = ({
   type,
   passwordInput,
   width,
+  step,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState('password');
@@ -37,7 +39,7 @@ const InputField: React.FC<InputFieldProps> = ({
 
   return (
     <div className={`flex flex-col mx-auto mb-4 ${width ? 'w-full' : ''}`}>
-      <label htmlFor={name} className="font-semibold">
+      <label htmlFor={name} className="font-semibold whitespace-nowrap">
         {label}
       </label>
       <div className="relative">
@@ -50,6 +52,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 width || 'sm:w-[30rem] w-80'
               } bg-transparent border-gray placeholder:text-gray focus:outline-none`}
               type={type || showPassword}
+              step={step}
               {...props}
             />
           )}
