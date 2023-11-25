@@ -1,5 +1,5 @@
 import Modal, { Styles } from 'react-modal';
-import person2 from '../../../assets/person2.svg';
+// import person2 from '../../../assets/person2.svg';
 import { UserContextData } from '../../../context/type';
 import { UserContext } from '../../../context/UserContext';
 import { useContext } from 'react';
