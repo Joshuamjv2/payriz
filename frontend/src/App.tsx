@@ -8,7 +8,7 @@ import ProtectedRoute from './hooks/ProtectedRoute';
 import AuthRoute from './hooks/AuthRoute';
 import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
-import Profiles from './pages/DashboardPages/Profiles';
+import Profiles from './pages/DashboardPages/Profiles/Profiles';
 import AttachInvoice from './pages/DashboardPages/AttachInvoice';
 import AllInvoices from './pages/DashboardPages/AllInvoices';
 import Wallet from './pages/DashboardPages/Wallet';

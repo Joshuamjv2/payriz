@@ -7,3 +7,13 @@ export interface UserContextData {
   customers?: any[];
   isProfileLoading?: boolean;
 }
+
+// export interface CustomerInfo {
+//   address: string;
+//   created?: string;
+//   email: string;
+//   id: string;
+//   name: string;
+//   owner: string;
+//   phone: string;
+// }
