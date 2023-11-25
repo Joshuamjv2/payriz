@@ -10,6 +10,7 @@ import { UserContext } from '../../context/UserContext';
 import Modal from 'react-modal';
 import success from '../../assets/success.svg';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const customStyles = {
   content: {
@@ -52,12 +53,20 @@ const CreateProfile = () => {
 
     setIsButtonDisabled(true);
     try {
-      await axios.post(`/customers?owner_id=${user?.user!._id}`, {
-        name: fullName,
-        email,
-        phone: phoneNumber,
-        address,
-      });
+      await axios.post(
+        `/customers?owner_id=${user?.user!._id}`,
+        {
+          name: fullName,
+          email,
+          phone: phoneNumber,
+          address,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${Cookies.get('token')}`,
+          },
+        },
+      );
       resetForm();
       navigate('/dashboard');
       toast.success('Profile created successfully');
