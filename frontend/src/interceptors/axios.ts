@@ -30,6 +30,7 @@ axios.interceptors.response.use(
         Cookies.set('token', resBody.access_token, { secure: true });
         Cookies.set('refresh-token', resBody.refresh_token, { secure: true });
 
+        window.location.reload();
         axios.defaults.headers.common[
           'Authorization'
         ] = `Bearer ${resBody.access_token}`;

@@ -9,7 +9,6 @@ import AuthRoute from './hooks/AuthRoute';
 import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
 import Profiles from './pages/DashboardPages/Profiles';
-import Context from './context/UserContext';
 import AttachInvoice from './pages/DashboardPages/AttachInvoice';
 import AllInvoices from './pages/DashboardPages/AllInvoices';
 import Wallet from './pages/DashboardPages/Wallet';
@@ -19,34 +18,23 @@ function App() {
 
   return (
     <Router>
-      <Context>
-        <ToastContainer />
-        <Routes>
-          <Route
-            path="/"
-            element={isAuthenticated ? <Dashboard /> : <Login />}
-          />
-          <Route path="" element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route
-              path="/dashboard/create-profile"
-              element={<CreateProfile />}
-            />
-            <Route path="/dashboard/profiles" element={<Profiles />} />
-            <Route
-              path="/dashboard/attach-invoice"
-              element={<AttachInvoice />}
-            />
-            <Route path="/dashboard/invoices" element={<AllInvoices />} />
-            <Route path="/dashboard/wallet" element={<Wallet />} />
-          </Route>
-          <Route path="" element={<AuthRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-          {/* <Route path="*" element={<ErrorPage />} /> */}
-        </Routes>
-      </Context>
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={isAuthenticated ? <Dashboard /> : <Login />} />
+        <Route path="" element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/create-profile" element={<CreateProfile />} />
+          <Route path="/dashboard/profiles" element={<Profiles />} />
+          <Route path="/dashboard/attach-invoice" element={<AttachInvoice />} />
+          <Route path="/dashboard/invoices" element={<AllInvoices />} />
+          <Route path="/dashboard/wallet" element={<Wallet />} />
+        </Route>
+        <Route path="" element={<AuthRoute />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+        {/* <Route path="*" element={<ErrorPage />} /> */}
+      </Routes>
     </Router>
   );
 }

@@ -27,7 +27,7 @@ const Profiles = () => {
               </tr>
 
               {user?.customers?.map((customer) => (
-                <tr key={customer.id} className="[&>*]:py-5 text-sm">
+                <tr key={customer.id} className="[&>*]:py-2 text-sm">
                   <td className="flex items-center gap-x-2">
                     <img
                       src={person}
