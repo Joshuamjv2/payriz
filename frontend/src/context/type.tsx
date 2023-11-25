@@ -5,7 +5,9 @@ export interface UserContextData {
     _id?: string;
   };
   customers?: any[];
+  invoices?: any[];
   isProfileLoading?: boolean;
+  isInvoiceLoading?: boolean;
 }
 
 // export interface CustomerInfo {

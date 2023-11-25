@@ -14,7 +14,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const user: UserContextData = useContext(UserContext);
 
-  console.log(user?.isProfileLoading);
+  console.log(user);
 
   return (
     <>

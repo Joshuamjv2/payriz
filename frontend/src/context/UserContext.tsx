@@ -14,7 +14,9 @@ const Context = ({ children }: Props) => {
   const [user, setUser] = useState({});
   const [_id, setUserId] = useState(null);
   const [customers, setCustomers] = useState([]);
-  const [isProfileLoading, setIsProfileLoading] = useState(true); // Add loading state
+  const [invoices, setInvoices] = useState([]);
+  const [isProfileLoading, setIsProfileLoading] = useState(true);
+  const [isInvoiceLoading, setIsInvoiceLoading] = useState(true);
 
   const location = useLocation();
 
@@ -58,12 +60,34 @@ const Context = ({ children }: Props) => {
       }
     };
 
+    const fetchInvoices = async () => {
+      setIsInvoiceLoading(true);
+      try {
+        if (_id) {
+          const res = await axios.get(`/invoices?owner_id=${_id}`, {
+            headers: {
+              'Authorization': `Bearer ${Cookies.get('token')}`,
+            },
+          });
+
+          const resBody = JSON.parse(res.data.body);
+          setInvoices(resBody);
+        }
+        setIsInvoiceLoading(false);
+      } catch (error) {
+        toast.error('Error fetching invoices');
+      }
+    };
+
     fetchUser();
     fetchCustomers();
+    fetchInvoices();
   }, [_id, location.pathname]);
 
   return (
-    <UserContext.Provider value={{ user, customers, isProfileLoading }}>
+    <UserContext.Provider
+      value={{ user, customers, isProfileLoading, invoices, isInvoiceLoading }}
+    >
       {Object.keys(user).length !== 0 ? children : null}
     </UserContext.Provider>
   );
