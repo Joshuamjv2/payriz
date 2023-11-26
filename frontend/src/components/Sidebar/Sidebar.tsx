@@ -94,7 +94,9 @@ const Sidebar = () => {
       className="flex grow flex-col overflow-y-auto shadow-md pl-4 pr-7 h-screen [&::-webkit-scrollbar]:hidden"
       style={divStyle}
     >
-      <img src={logo} alt="Logo" className="w-[50px] mx-auto mt-5" />
+      <Link to="/">
+        <img src={logo} alt="Logo" className="w-[50px] mx-auto mt-5" />
+      </Link>
       <div className="flex flex-col justify-center items-center mt-7">
         <img src={profile_pic} alt="Profile Picture" className="w-[50px]" />
         <p className="pt-2 font-bold text-sm">

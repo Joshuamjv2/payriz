@@ -2,6 +2,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import InputField from '../../components/InputField';
 import * as Yup from 'yup';
 import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 const contactFormSchema = Yup.object().shape({
   firstName: Yup.string().required('First name is required'),
@@ -16,44 +19,46 @@ const contactFormSchema = Yup.object().shape({
 const Contact = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  const sendContactMessage = async (values: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    message: string;
-  }) => {
+  const sendContactMessage = async (
+    values: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phoneNumber: string;
+      message: string;
+    },
+    { resetForm }: any,
+  ) => {
     const { firstName, lastName, email, phoneNumber, message } = values;
 
     console.log(firstName, lastName, email, phoneNumber, message);
 
     setIsButtonDisabled(true);
-    // try {
-    //   await axios.post(
-    //     `/customers?owner_id=${user?.user!._id}`,
-    //     {
-    //       name: fullName,
-    //       email,
-    //       phone: phoneNumber,
-    //       address,
-    //     },
-    //     {
-    //       headers: {
-    //         'Authorization': `Bearer ${Cookies.get('token')}`,
-    //       },
-    //     },
-    //   );
-    //   resetForm();
-    //   navigate('/dashboard');
-    //   toast.success('Profile created successfully');
+    try {
+      await axios.post(
+        `/contact`,
+        {
+          first_name: firstName,
+          last_name: lastName,
+          phone: phoneNumber,
+          email,
+          message,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${Cookies.get('token')}`,
+          },
+        },
+      );
+      resetForm();
+      toast.success('Your message has been sent!');
 
-    setIsButtonDisabled(false);
-    // } catch (error: any) {
-    //   console.log(error);
-    //   const err = JSON.parse(error.response.data.body);
-    //   toast.error(err.detail);
-    //   setIsButtonDisabled(false);
-    // }
+      setIsButtonDisabled(false);
+    } catch (error: any) {
+      const err = JSON.parse(error.response.data.body);
+      toast.error(err.detail);
+      setIsButtonDisabled(false);
+    }
   };
 
   return (
