@@ -7,7 +7,10 @@ import attach_white from '../assets/attach-white.svg';
 import { useNavigate } from 'react-router-dom';
 import { UserContextData } from '../context/type';
 import { UserContext } from '../context/UserContext';
-import { convertTimestampToFormattedDate } from '../helpers';
+import {
+  calculateTotalAmount,
+  convertTimestampToFormattedDate,
+} from '../helpers';
 import person from '../assets/person.svg';
 
 const Dashboard = () => {
@@ -78,28 +81,27 @@ const Dashboard = () => {
                     <th className="flex justify-end">Date</th>
                   </tr>
 
-                  {/* {user?.customers?.slice(0, 10).map((customer) => (
-                  <tr key={customer.id} className="[&>*]:py-5 text-sm">
-                    <td className="flex items-center gap-x-2">
-                      <img src={person} alt="person" />
-                      {customer.name}
-                    </td>
-                    <td>{customer.email}</td>
-                    <td>{convertTimestampToFormattedDate(customer.created)}</td>
-                  </tr>
-                ))} */}
+                  {user?.invoices?.slice(0, 5).map((invoice) => (
+                    <tr key={invoice.id} className="[&>*]:py-5 text-sm">
+                      <td>{invoice.invoice_number}</td>
+                      <td>{calculateTotalAmount(invoice.items)}</td>
+                      <td className="flex justify-end">{invoice.due_date}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
 
-              {/* {user?.isProfileLoading && (
-              <p className="text-center sm:my-40 my-10 text-gray text-sm">
-                Loading...
-              </p>
-            )} */}
+              {user?.isInvoiceLoading && user?.invoices?.length === 0 && (
+                <p className="text-center sm:my-40 my-10 text-gray text-sm">
+                  Loading...
+                </p>
+              )}
 
-              <p className="text-center sm:my-36 my-10 text-gray text-sm">
-                No invoices yet
-              </p>
+              {user?.invoices?.length == 0 && !user?.isInvoiceLoading && (
+                <p className="text-center sm:my-40 my-10 text-gray text-sm">
+                  No invoices yet
+                </p>
+              )}
             </div>
           </section>
 

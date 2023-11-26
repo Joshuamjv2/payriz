@@ -63,3 +63,11 @@ export function transformProducts(
     }),
   );
 }
+
+export const calculateTotalAmount = (products: any[]) => {
+  const total = products.reduce((total, product) => {
+    const productTotal = product.unit_cost * product.quantity;
+    return total + productTotal;
+  }, 0);
+  return total.toFixed(2);
+};
