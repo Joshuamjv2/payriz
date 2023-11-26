@@ -25,7 +25,7 @@ const ReadOnlyCalendar: React.FC<InputFieldProps> = ({
           value={value}
           readOnly
           placeholder={placeholder}
-          className={`mt-1 focus:border-2 w-full border-[1px] rounded-md py-3 px-[10px] bg-transparent border-gray placeholder:text-gray focus:outline-none`}
+          className={`mt-1 focus:border-2 text-xs w-full border-[1px] rounded-md py-3 px-[10px] bg-transparent border-gray placeholder:text-gray focus:outline-none`}
           type="date"
         />
       </div>

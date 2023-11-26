@@ -129,7 +129,7 @@ const Sidebar = () => {
         </ul>
       </nav>
       <button
-        className="lg:pb-3 pb-16 flex gap-2 text-black items-center text-sm"
+        className="lg:pb-3 pb-16 flex gap-2 text-[#FF0000] items-center text-sm"
         onClick={handleLogOut}
       >
         <img src={logout} alt="logout" />
@@ -143,7 +143,7 @@ const Sidebar = () => {
       <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-[186px] lg:flex-col">
         {drawer}
       </div>
-      <div className={`bg-white block lg:hidden fixed left-0 z-50`}>
+      <div className={`block lg:hidden fixed left-0 z-50`}>
         <Hamburger openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
         <div className={openDrawer ? 'mt-2 drop-shadow-2xl' : ''}>
           {openDrawer && <div className="fixed w-[186px]">{drawer}</div>}

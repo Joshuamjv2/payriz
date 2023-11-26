@@ -92,11 +92,11 @@ const SendInvoice = () => {
         </p> */}
 
         <section className="grid xl:grid-cols-3 mt-5 gap-5">
-          <section className="bg-white xl:col-span-2 rounded-lg py-5 px-11 shadow-sm">
+          <section className="bg-white xl:col-span-2 rounded-lg py-5 sm:px-11 px-5 shadow-sm">
             <h2 className="text-blue font-bold">
               Invoice #{state?.values?.invoiceNumber}
             </h2>
-            <div className="bg-[#f3f3f3] rounded-lg mt-7 py-3 px-5 flex justify-between">
+            <div className="bg-blue bg-opacity-25 rounded-lg mt-7 py-3 px-5 flex justify-between">
               <div>
                 <h2 className="font-bold text-[13px]">Invoice Number</h2>
                 <div className="mt-3 text-xs font-light">
@@ -154,7 +154,7 @@ const SendInvoice = () => {
           </section>
 
           <section>
-            <div className="bg-white rounded-lg py-5 px-11 shadow-sm">
+            <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
               <h2 className="text-blue font-bold">Client Details</h2>
               <div className="flex gap-2 items-center mt-4">
                 <img src={person} alt="person" />
@@ -166,7 +166,7 @@ const SendInvoice = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg py-5 px-11 shadow-sm mt-10">
+            <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm mt-10">
               <h2 className="text-blue font-bold">Basic Info</h2>
               <div className=" items-center mt-4">
                 <ReadOnlyCalendar

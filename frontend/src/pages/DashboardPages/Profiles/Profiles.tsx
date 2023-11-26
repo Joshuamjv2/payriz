@@ -38,7 +38,7 @@ const Profiles = () => {
     <>
       <Sidebar />
       <div className="lg:pl-56 lg:pr-10 py-12 lg:py-10 px-2 bg-whiteBg min-h-screen">
-        <section className="bg-white rounded-lg py-5 px-11 shadow-sm">
+        <section className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
           <div className="flex justify-between items-center">
             <h2 className="text-blue font-bold">List of Profiles</h2>
           </div>

@@ -14,15 +14,17 @@ const Wallet = () => {
     <>
       <Sidebar />
       <div className="lg:pl-56 lg:pr-10 py-12 lg:py-10 px-2 bg-whiteBg min-h-screen">
-        <section className="bg-white rounded-lg py-10 px-11 shadow-sm">
-          <div className="flex items-center justify-between bg-blue bg-opacity-25 rounded-lg p-7 shadow-sm">
+        <section className="bg-white rounded-lg py-10 sm:px-11 px-2 shadow-sm">
+          <div className="sm:flex items-center justify-between bg-blue bg-opacity-25 rounded-lg p-7 shadow-sm">
             <div>
-              <h1 className="font-bold text-4xl">₦250,000</h1>
-              <p className="font-light">Current Wallet Balance</p>
+              <h1 className="font-bold sm:text-4xl text-2xl">₦250,000</h1>
+              <p className="font-light sm:text-sm text-xs">
+                Current Wallet Balance
+              </p>
             </div>
             <button
               type="button"
-              className="bg-blue text-white flex items-center rounded-lg p-3 gap-3"
+              className="bg-blue sm:mt-0 mt-3 text-white sm:text-base text-sm flex items-center rounded-lg p-3 gap-3"
             >
               <img src={withdraw} alt="withdraw" />
               Withdraw
@@ -33,7 +35,7 @@ const Wallet = () => {
             <div className="flex justify-between items-center">
               <h2 className="text-blue font-bold">All Transaction Details</h2>
               <button
-                className="text-gray text-sm font-light pt-2"
+                className="text-gray text-sm font-light pt-2 text-end"
                 type="button"
                 onClick={() => setBankDetailsModalIsOpen(true)}
               >

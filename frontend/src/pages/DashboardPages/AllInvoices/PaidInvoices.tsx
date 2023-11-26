@@ -10,7 +10,7 @@ const PaidInvoices = () => {
   const paidInvoices = getPaidInvoices(user?.invoices as any[]);
 
   return (
-    <div className="mt-12">
+    <div className="mt-5">
       <table className="mt-5 w-full">
         <tbody>
           <tr className="[&>*]:text-left text-gray text-sm">

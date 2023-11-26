@@ -23,7 +23,7 @@ const InvoiceNav = () => {
 
   return (
     <div>
-      <nav className="mx-5 sm-sc:mx-2 pt-5 flex gap-x-11 sm-sc:gap-x-1 overflow-x-scroll [&::-webkit-scrollbar]:hidden pb-10">
+      <nav className="mx-5 sm-sc:mx-2 pt-5 flex sm:gap-x-11 gap-x-5 sm-sc:gap-x-1 overflow-x-scroll [&::-webkit-scrollbar]:hidden pb-10">
         {navLinks.map((link) => (
           <NavLink
             key={link.name}

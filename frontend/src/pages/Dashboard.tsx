@@ -31,7 +31,7 @@ const Dashboard = () => {
         <section className="grid xl:grid-cols-2 mt-5 gap-5">
           <section>
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-white rounded-lg py-5 px-11 shadow-sm">
+              <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
                 <h2 className="text-blue font-bold">Create a Profile</h2>
                 <p className="text-gray text-sm font-light pt-2">
                   Click here to create a profile
@@ -45,7 +45,7 @@ const Dashboard = () => {
                   Create Profile
                 </button>
               </div>
-              <div className="bg-white rounded-lg py-5 px-11 shadow-sm">
+              <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
                 <h2 className="text-blue font-bold">Attach Invoice</h2>
                 <p className="text-gray text-sm font-light pt-2">
                   Click here to attach an invoice
@@ -61,7 +61,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg py-5 px-11 mt-5 shadow-sm">
+            <div className="bg-white rounded-lg py-5 sm:px-11 px-5 mt-5 shadow-sm">
               <div className="flex justify-between items-center">
                 <h2 className="text-blue font-bold">Invoices</h2>
                 <button
@@ -105,7 +105,7 @@ const Dashboard = () => {
             </div>
           </section>
 
-          <section className="bg-white rounded-lg py-5 px-11 shadow-sm">
+          <section className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
             <div className="flex justify-between items-center">
               <h2 className="text-blue font-bold">List of Profiles</h2>
               <button
