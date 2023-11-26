@@ -36,8 +36,9 @@ const Context = ({ children }: Props) => {
 
         setUser({ firstName, lastName, _id });
         setUserId(_id);
-      } catch (error) {
-        toast.error('Error fetching user');
+      } catch (error: any) {
+        const err = JSON.parse(error.response.data.body);
+        toast.error(err.detail || 'Error fetching user');
       }
     };
 
@@ -55,8 +56,9 @@ const Context = ({ children }: Props) => {
           setCustomers(resBody);
         }
         setIsProfileLoading(false);
-      } catch (error) {
-        toast.error('Error fetching customer profiles');
+      } catch (error: any) {
+        const err = JSON.parse(error.response.data.body);
+        toast.error(err.detail || 'Error fetching customer profiles');
       }
     };
 
@@ -74,8 +76,9 @@ const Context = ({ children }: Props) => {
           setInvoices(resBody);
         }
         setIsInvoiceLoading(false);
-      } catch (error) {
-        toast.error('Error fetching invoices');
+      } catch (error: any) {
+        const err = JSON.parse(error.response.data.body);
+        toast.error(err.detail || 'Error fetching invoices');
       }
     };
 

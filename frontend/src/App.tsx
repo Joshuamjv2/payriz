@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/AuthPages/Login';
 import Register from './pages/AuthPages/Register';
 import Dashboard from './pages/Dashboard';
@@ -11,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from './hooks/ProtectedRoute';
 import AuthRoute from './hooks/AuthRoute';
-import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
 import Profiles from './pages/DashboardPages/Profiles/Profiles';
 import AttachInvoice from './pages/DashboardPages/AttachInvoice/AttachInvoice';
@@ -22,22 +16,15 @@ import InvoiceLayout from './pages/DashboardPages/AllInvoices/InvoiceLayout';
 import OverdueInvoices from './pages/DashboardPages/AllInvoices/OverdueInvoices';
 import PendingInvoices from './pages/DashboardPages/AllInvoices/PendingInvoices';
 import PaidInvoices from './pages/DashboardPages/AllInvoices/PaidInvoices';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 function App() {
-  const isAuthenticated = !!Cookies.get('token');
-
   return (
     <Router>
       <ToastContainer />
       <Routes>
         <Route path="/payment-status" element={<PaymentStatus />} />
-
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />
-          }
-        />
+        <Route path="/" element={<LandingPage />} />
         <Route path="" element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/create-profile" element={<CreateProfile />} />

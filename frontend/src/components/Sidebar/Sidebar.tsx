@@ -36,7 +36,7 @@ const Sidebar = () => {
   const handleLogOut = () => {
     Cookies.remove('token');
     Cookies.remove('refresh-token');
-    navigate('/login');
+    navigate('/');
     toast.success('Logged out successfully');
   };
 

@@ -1,8 +1,11 @@
 import { Form, Formik } from 'formik';
 import Modal, { Styles } from 'react-modal';
 import InputField from '../../../components/InputField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 // import { UserContextData } from '../../../context/type';
 // import { UserContext } from '../../../context/UserContext';
 // import { useContext } from 'react';
@@ -41,6 +44,29 @@ const AddBankDetails = ({
   closeModal: any;
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const res = await axios.get(`/payouts/banks`, {
+          headers: {
+            'Authorization': `Bearer ${Cookies.get('token')}`,
+          },
+        });
+
+        const resBody = JSON.parse(res.data.body);
+        console.log(resBody);
+
+        // setUserId(_id);
+      } catch (error: any) {
+        const err = JSON.parse(error.response.data.body);
+        toast.error(err.detail || 'Error fetching banks');
+        closeModal();
+      }
+    };
+
+    fetchBanks();
+  }, [closeModal]);
 
   //   const user: UserContextData = useContext(UserContext);
   //   const navigate = useNavigate();
