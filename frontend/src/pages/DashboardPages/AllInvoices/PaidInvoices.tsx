@@ -1,35 +1,55 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../../context/UserContext';
 import { UserContextData } from '../../../context/type';
 import { calculateTotalAmount, getPaidInvoices } from '../../../helpers';
 import eye from '../../../assets/eye.svg';
+import InvoiceModal from './InvoiceModal';
 
 const PaidInvoices = () => {
   const user: UserContextData = useContext(UserContext);
+
+  const [viewModalIsOpen, setViewModalIsOpen] = useState(false);
+  const [activeInvoice, setActiveInvoice] = useState(null);
+
+  function closeViewModal() {
+    setViewModalIsOpen(false);
+  }
+  const handleViewOpening = (invoice: any) => {
+    setViewModalIsOpen(true);
+    setActiveInvoice(invoice);
+  };
 
   const paidInvoices = getPaidInvoices(user?.invoices as any[]);
 
   return (
     <div className="mt-5">
-      <table className="mt-5 w-full">
-        <tbody>
-          <tr className="[&>*]:text-left text-gray text-sm">
-            <th>Invoice #</th>
-            <th>Customer Name</th>
-            <th>Amount</th>
-            <th>Date Created</th>
-            <th className="flex justify-end" />
+      <table className="mt-5 w-full overflow-x-auto block [&::-webkit-scrollbar]:hidden">
+        <tbody className="table w-full">
+          <tr className="[&>*]:text-left [&>*]:px-2 text-gray text-sm">
+            <th className="whitespace-nowrap">Invoice #</th>
+            <th className="whitespace-nowrap">Customer Name</th>
+            <th className="whitespace-nowrap">Amount (in Naira)</th>
+            <th className="whitespace-nowrap">Date Created</th>
+            <th className="" />
           </tr>
 
           {paidInvoices?.map((invoice) => (
-            <tr key={invoice.id} className="[&>*]:py-5 text-sm">
-              <td>{invoice.invoice_number}</td>
+            <tr
+              key={invoice.id}
+              className="[&>*]:p-2 text-sm cursor-pointer"
+              onClick={() => handleViewOpening(invoice)}
+            >
+              <td className="font-bold">{invoice.invoice_number}</td>
               <td>{invoice.customer.name}</td>
               <td>{calculateTotalAmount(invoice.items)}</td>
-              <td>{invoice.due_date}</td>
+              <td className="whitespace-nowrap">{invoice.due_date}</td>
               <td className="flex justify-end">
-                <button type="button">
-                  <img src={eye} alt="View" />
+                <button type="button" className="flex items-center">
+                  <img
+                    src={eye}
+                    alt="View"
+                    className="w-3 max-w-[12px] block sm:mb-4"
+                  />
                 </button>
               </td>
             </tr>
@@ -48,6 +68,11 @@ const PaidInvoices = () => {
           No paid invoices
         </p>
       )}
+      <InvoiceModal
+        modalIsOpen={viewModalIsOpen}
+        closeModal={closeViewModal}
+        activeInvoice={activeInvoice}
+      />
     </div>
   );
 };

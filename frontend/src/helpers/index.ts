@@ -65,11 +65,19 @@ export function transformProducts(
 }
 
 export const calculateTotalAmount = (products: any[]) => {
-  const total = products.reduce((total, product) => {
+  const total = products?.reduce((total, product) => {
     const productTotal = product.unit_cost * product.quantity;
     return total + productTotal;
   }, 0);
   return total.toFixed(2);
+};
+
+export const calculateViewableTotalAmount = (products: any[]) => {
+  const total = products?.reduce((total, product) => {
+    const productTotal = product.unit_cost * product.quantity;
+    return total + productTotal;
+  }, 0);
+  return total;
 };
 
 export function getOverdueInvoices(invoices: any[]) {
@@ -78,7 +86,7 @@ export function getOverdueInvoices(invoices: any[]) {
 
   return invoices.filter((invoice) => {
     // Check if the invoice is not paid and due date has passed
-    if (!invoice.paid) {
+    if (invoice.status !== 'paid') {
       const dueDate = new Date(invoice.due_date.replace(/,/, ''));
       dueDate.setHours(0, 0, 0, 0);
 
@@ -101,7 +109,7 @@ export function getPendingInvoices(invoices: any[]) {
 
   return invoices.filter((invoice) => {
     // Check if the invoice is not paid and due date has not passed
-    if (!invoice.paid) {
+    if (invoice.status !== 'paid' && invoice.status !== 'failed') {
       const dueDate = new Date(invoice.due_date.replace(/,/, ''));
       dueDate.setHours(0, 0, 0, 0);
 
@@ -119,5 +127,28 @@ export function getPendingInvoices(invoices: any[]) {
 }
 
 export function getPaidInvoices(invoices: any[]) {
-  return invoices.filter((invoice) => invoice.paid);
+  return invoices.filter((invoice) => invoice.status === 'paid');
+}
+
+export function formatDateToShortForm(inputDateString: string): string {
+  const inputDate = new Date(inputDateString);
+  const month = (inputDate.getMonth() + 1).toString().padStart(2, '0');
+  const day = inputDate.getDate().toString().padStart(2, '0');
+  const year = inputDate.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+
+export function isOverdue(dueDateStr: string): boolean {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
+  const dueDate = new Date(dueDateStr.replace(/,/, ''));
+  dueDate.setHours(0, 0, 0, 0);
+
+  const daysDifference = Math.floor(
+    (dueDate.valueOf() - currentDate.valueOf()) / (1000 * 60 * 60 * 24),
+  );
+
+  return daysDifference < 0;
 }

@@ -159,7 +159,7 @@ const AttachInvoice = () => {
                           />
                           <div className="flex items-center gap-x-3">
                             <InputField
-                              label="Amount (in dollars)"
+                              label="Amount (in naira)"
                               placeholder="350"
                               name={`products.${index}.productAmount`}
                               type="number"

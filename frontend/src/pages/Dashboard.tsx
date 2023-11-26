@@ -17,7 +17,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const user: UserContextData = useContext(UserContext);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <>

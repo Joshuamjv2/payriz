@@ -50,6 +50,7 @@ const SendInvoice = () => {
     invoice_date: formatShortDate(state?.values?.issueDate),
     items: transformProducts(state?.values?.products),
     redirect_url: `${import.meta.env.VITE_FRONTEND_URL}/payment-status`,
+    status: 'pending',
   };
 
   const handleEdit = () => {

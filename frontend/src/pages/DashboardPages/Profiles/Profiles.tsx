@@ -53,7 +53,11 @@ const Profiles = () => {
               </tr>
 
               {user?.customers?.map((customer) => (
-                <tr key={customer.id} className="[&>*]:p-2 text-sm">
+                <tr
+                  key={customer.id}
+                  className="[&>*]:p-2 text-sm cursor-pointer"
+                  onClick={() => handleViewOpening(customer.id)}
+                >
                   <td className="flex items-center gap-x-2 whitespace-nowrap">
                     <img
                       src={person}
