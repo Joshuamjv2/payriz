@@ -78,7 +78,7 @@ const Dashboard = () => {
                   <tr className="[&>*]:text-left text-gray text-sm">
                     <th>Invoice #</th>
                     <th>Amount</th>
-                    <th className="flex justify-end">Date</th>
+                    <th className="flex justify-end">Date Created</th>
                   </tr>
 
                   {user?.invoices?.slice(0, 5).map((invoice) => (

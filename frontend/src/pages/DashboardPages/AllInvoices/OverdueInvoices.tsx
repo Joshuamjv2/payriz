@@ -7,11 +7,7 @@ import eye from '../../../assets/eye.svg';
 const OverdueInvoices = () => {
   const user: UserContextData = useContext(UserContext);
 
-  //   console.log(user?.invoices);
-
   const overdueInvoices = getOverdueInvoices(user?.invoices as any[]);
-
-  console.log('overDueInvoices', overdueInvoices);
 
   return (
     <div className="mt-12">
@@ -21,7 +17,7 @@ const OverdueInvoices = () => {
             <th>Invoice #</th>
             <th>Customer Name</th>
             <th>Amount</th>
-            <th>Date</th>
+            <th>Date Created</th>
             <th className="flex justify-end" />
           </tr>
 

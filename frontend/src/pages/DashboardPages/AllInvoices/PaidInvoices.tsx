@@ -9,8 +9,6 @@ const PaidInvoices = () => {
 
   const paidInvoices = getPaidInvoices(user?.invoices as any[]);
 
-  console.log('paidInvoices', paidInvoices);
-
   return (
     <div className="mt-12">
       <table className="mt-5 w-full">
@@ -19,7 +17,7 @@ const PaidInvoices = () => {
             <th>Invoice #</th>
             <th>Customer Name</th>
             <th>Amount</th>
-            <th>Date</th>
+            <th>Date Created</th>
             <th className="flex justify-end" />
           </tr>
 

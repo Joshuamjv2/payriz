@@ -15,7 +15,7 @@ import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
 import Profiles from './pages/DashboardPages/Profiles/Profiles';
 import AttachInvoice from './pages/DashboardPages/AttachInvoice/AttachInvoice';
-import Wallet from './pages/DashboardPages/Wallet';
+import Wallet from './pages/DashboardPages/Wallet/Wallet';
 import SendInvoice from './pages/DashboardPages/AttachInvoice/SendInvoice';
 import PaymentStatus from './pages/PublicPages/PaymentStatus';
 import InvoiceLayout from './pages/DashboardPages/AllInvoices/InvoiceLayout';
