@@ -15,10 +15,13 @@ import Cookies from 'js-cookie';
 import CreateProfile from './pages/DashboardPages/CreateProfile';
 import Profiles from './pages/DashboardPages/Profiles/Profiles';
 import AttachInvoice from './pages/DashboardPages/AttachInvoice/AttachInvoice';
-import AllInvoices from './pages/DashboardPages/AllInvoices/AllInvoices';
 import Wallet from './pages/DashboardPages/Wallet';
 import SendInvoice from './pages/DashboardPages/AttachInvoice/SendInvoice';
 import PaymentStatus from './pages/PublicPages/PaymentStatus';
+import InvoiceLayout from './pages/DashboardPages/AllInvoices/InvoiceLayout';
+import OverdueInvoices from './pages/DashboardPages/AllInvoices/OverdueInvoices';
+import PendingInvoices from './pages/DashboardPages/AllInvoices/PendingInvoices';
+import PaidInvoices from './pages/DashboardPages/AllInvoices/PaidInvoices';
 
 function App() {
   const isAuthenticated = !!Cookies.get('token');
@@ -45,7 +48,11 @@ function App() {
             element={<SendInvoice />}
           />
 
-          <Route path="/dashboard/invoices" element={<AllInvoices />} />
+          <Route path="/dashboard/invoices" element={<InvoiceLayout />}>
+            <Route path="/dashboard/invoices" element={<OverdueInvoices />} />
+            <Route path="pending" element={<PendingInvoices />} />
+            <Route path="paid" element={<PaidInvoices />} />
+          </Route>
           <Route path="/dashboard/wallet" element={<Wallet />} />
         </Route>
         <Route path="" element={<AuthRoute />}>

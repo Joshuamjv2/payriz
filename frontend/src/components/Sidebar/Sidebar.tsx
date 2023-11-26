@@ -48,13 +48,13 @@ const Sidebar = () => {
       current: location.pathname === '/dashboard' || location.pathname === '/',
     },
     {
-      name: 'Create a Profile',
+      name: 'Create Customer',
       href: '/dashboard/create-profile',
       icon: create,
       current: location.pathname === '/dashboard/create-profile',
     },
     {
-      name: 'List of Profiles',
+      name: 'List of Customers',
       href: '/dashboard/profiles',
       icon: list,
       current: location.pathname === '/dashboard/profiles',
@@ -71,7 +71,11 @@ const Sidebar = () => {
       name: 'All Invoices',
       href: '/dashboard/invoices',
       icon: view,
-      current: location.pathname === '/dashboard/invoices',
+      current:
+        location.pathname === '/dashboard/invoices' ||
+        location.pathname === '/dashboard/invoices/' ||
+        location.pathname === '/dashboard/invoices/paid' ||
+        location.pathname === '/dashboard/invoices/pending',
     },
     {
       name: 'Wallet',

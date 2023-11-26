@@ -71,3 +71,53 @@ export const calculateTotalAmount = (products: any[]) => {
   }, 0);
   return total.toFixed(2);
 };
+
+export function getOverdueInvoices(invoices: any[]) {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
+  return invoices.filter((invoice) => {
+    // Check if the invoice is not paid and due date has passed
+    if (!invoice.paid) {
+      const dueDate = new Date(invoice.due_date.replace(/,/, ''));
+      dueDate.setHours(0, 0, 0, 0);
+
+      // Calculate the difference in days
+      const daysDifference = Math.floor(
+        (dueDate.valueOf() - currentDate.valueOf()) / (1000 * 60 * 60 * 24),
+      );
+
+      // Filter out overdue invoices
+      return daysDifference < 0;
+    }
+
+    return false;
+  });
+}
+
+export function getPendingInvoices(invoices: any[]) {
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+
+  return invoices.filter((invoice) => {
+    // Check if the invoice is not paid and due date has not passed
+    if (!invoice.paid) {
+      const dueDate = new Date(invoice.due_date.replace(/,/, ''));
+      dueDate.setHours(0, 0, 0, 0);
+
+      // Calculate the difference in days
+      const daysDifference = Math.floor(
+        (dueDate.valueOf() - currentDate.valueOf()) / (1000 * 60 * 60 * 24),
+      );
+
+      // Filter out pending invoices
+      return daysDifference >= 0;
+    }
+
+    return false;
+  });
+}
+
+export function getPaidInvoices(invoices: any[]) {
+  return invoices.filter((invoice) => invoice.paid);
+}
