@@ -11,7 +11,6 @@ import {
   convertTimestampToFormattedDate,
   formatDateToShortForm,
 } from '../helpers';
-// import person from '../assets/person.svg';
 
 const Dashboard = () => {
   const navigate = useNavigate();
