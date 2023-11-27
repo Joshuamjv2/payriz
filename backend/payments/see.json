@@ -1,0 +1,54 @@
+{
+  "event": "transfer.success",
+  "data": {
+    "amount": 20000,
+    "createdAt": "2023-11-26T22:54:12.000Z",
+    "currency": "NGN",
+    "domain": "test",
+    "failures": null,
+    "id": 400357551,
+    "integration": {
+      "id": 1109601,
+      "is_live": false,
+      "business_name": "Payriz",
+      "logo_path": "https://public-files-paystack-prod.s3.eu-west-1.amazonaws.com/integration-logos/paystack.jpg"
+    },
+    "reason": "Transfer from Payriz",
+    "reference": "z00ib-rmvc12hihtdjxw",
+    "source": "balance",
+    "source_details": null,
+    "status": "success",
+    "titan_code": null,
+    "transfer_code": "TRF_p5tlj8at0iqxhoh4",
+    "transferred_at": null,
+    "updatedAt": "2023-11-26T22:54:12.000Z",
+    "recipient": {
+      "active": true,
+      "createdAt": "2023-11-26T15:10:38.000Z",
+      "currency": "NGN",
+      "description": null,
+      "domain": "test",
+      "email": null,
+      "id": 65650544,
+      "integration": 1109601,
+      "metadata": null,
+      "name": "Ladejobi Moses Test",
+      "recipient_code": "RCP_m6z62ox5j39f4fb",
+      "type": "nuban",
+      "updatedAt": "2023-11-26T16:08:59.000Z",
+      "is_deleted": false,
+      "details": {
+        "authorization_code": null,
+        "account_number": "0161681695",
+        "account_name": "LADEJOBI MOSES OLUKOYA",
+        "bank_code": "058",
+        "bank_name": "Guaranty Trust Bank"
+      }
+    },
+    "session": {
+      "provider": null,
+      "id": null
+    },
+    "fee_charged": 0
+  }
+}

@@ -1,0 +1,33 @@
+<!-- "For setting up account password for employees and verifying email for owners." -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payriz - {{subject}}</title>
+</head>
+
+<body style="font-family: sans-serif">
+    <div style="margin: 0 auto; max-width: 40rem; padding: 4rem 0 1rem 0;">
+        <div>
+            <h3 style="font-size: 1.1rem;">{{intro}},</h3>
+            <p>You just received a message from Payriz contact form.</p>
+            <h5 style="font: bolder; font-size: 1rem;">Message:</h5>
+            <p style="font-size: 1rem; margin-top: -10px;">{{message}}</p>
+        </div>
+
+        <div style="margin-top: 12px;">
+            <h5 style="font: bold; font-size: 1rem;">User's Info:</h5>
+            <div style="margin-top: -5px;">
+                <p>Name: {{first_name}} {{last_name}}</p>
+                <p>Phone: {{phone}}</p>
+                <p>Email: {{sender_email}}</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
