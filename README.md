@@ -1,4 +1,4 @@
-# PAYRIZ: Simplifying Your Business Payment
+# [PAYRIZ](https://payriz.vercel.app): Simplifying Your Business Payment
 
 ![PAYRIZ Logo](https://payriz.vercel.app/assets/logo-0g-c7GYW.svg)
 
