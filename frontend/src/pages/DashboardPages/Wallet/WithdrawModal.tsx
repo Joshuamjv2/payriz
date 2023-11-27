@@ -10,10 +10,6 @@ import Dropdown from './Dropdown';
 import { UserContextData } from '../../../context/type';
 import { UserContext } from '../../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-// import { UserContextData } from '../../../context/type';
-// import { UserContext } from '../../../context/UserContext';
-// import { useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
 
 const customStyles: Styles = {
   content: {
