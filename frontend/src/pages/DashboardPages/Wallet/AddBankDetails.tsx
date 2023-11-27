@@ -167,7 +167,7 @@ const AddBankDetails = ({
             <InputField
               label="Account Number"
               name="accountNumber"
-              type="number"
+              type="text"
               width="w-full"
             />
             <Dropdown

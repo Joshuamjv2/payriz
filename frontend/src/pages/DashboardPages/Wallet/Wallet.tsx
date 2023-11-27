@@ -92,7 +92,7 @@ const Wallet = () => {
             <tbody className="table w-full">
               <tr className="[&>*]:text-left [&>*]:py-3 text-gray text-sm ">
                 <th>Description</th>
-                <th>Amount</th>
+                <th>Amount (in Naira)</th>
                 <th>Type</th>
                 <th className="flex justify-end">Date</th>
               </tr>
