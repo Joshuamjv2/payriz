@@ -29,7 +29,8 @@ const PaidInvoices = () => {
             <th className="whitespace-nowrap">Invoice #</th>
             <th className="whitespace-nowrap">Customer Name</th>
             <th className="whitespace-nowrap">Amount (in Naira)</th>
-            <th className="whitespace-nowrap">Date Created</th>
+            <th className="whitespace-nowrap">Date Paid</th>
+            <th className="whitespace-nowrap">Due Date</th>
             <th className="" />
           </tr>
 
@@ -42,6 +43,7 @@ const PaidInvoices = () => {
               <td className="font-bold">{invoice.invoice_number}</td>
               <td>{invoice.customer.name}</td>
               <td>{calculateTotalAmount(invoice.items)}</td>
+              <td>{invoice.date_paid}</td>
               <td className="whitespace-nowrap">{invoice.due_date}</td>
               <td className="flex justify-end">
                 <button type="button" className="flex items-center">

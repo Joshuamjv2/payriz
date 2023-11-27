@@ -115,7 +115,10 @@ const InvoiceModal = ({
           </div>
         </div>
         {activeInvoice?.status === 'paid' && (
-          <p className="text-sm text-blue">Status: {activeInvoice?.status}</p>
+          <div>
+            <p className="text-sm text-blue">Status: {activeInvoice?.status}</p>
+            <p className="text-sm">Date Paid: {activeInvoice?.date_paid}</p>
+          </div>
         )}
         {activeInvoice?.status === 'pending' &&
           !isOverdue(activeInvoice?.due_date) && (
