@@ -157,7 +157,7 @@ async def paystack_webhook(request: Request):
         invoice = invoice_collection.find_one({"_id": reference})
         if invoice["status"] == "paid":
             return
-        invoice_collection.update_one({"_id": reference}, {"$set": {"status": "paid", "updated": datetime.utcnow()}})
+        invoice_collection.update_one({"_id": reference}, {"$set": {"status": "paid", "date_paid": data["paid_at"], "updated": datetime.utcnow()}})
         wallet = wallet_collection.find_one({"owner": invoice["owner"]})
 
         balance = wallet["balance"]

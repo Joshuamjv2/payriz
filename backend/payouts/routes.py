@@ -91,8 +91,18 @@ async def request_payout(payout_account_id: str, payout_info: Transfer):
         raise HTTPException(status_code=400, detail="Specified payout account does not exist. Check your ID and try again.")
 
     wallet = wallet_collection.find_one({"_id": payout_info.from_wallet_id})
-    if not (wallet and wallet["balance"] > payout_info.amount):
-        raise HTTPException(status_code=403, detail="This transaction cannot go through. You don't have enough funds in your wallet.")
+    charges = 0
+    if payout_info.amount < 50000:
+        if payout_info.amount < 5001:
+            charges = 10
+        else:
+            charges = 25
+    else:
+        charges = 50
+
+    withdraw_balance = wallet["balance"]
+    if not (wallet and withdraw_balance >= (payout_info.amount + charges)):
+        raise HTTPException(status_code=403, detail=f"You don't have enough funds in your wallet. You need at least {str(payout_info.amount + charges)} in your account..")
 
     # initiate transfer
     transfer_data = {
