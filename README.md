@@ -40,5 +40,5 @@ We welcome contributions to PAYRIZ! If you'd like to contribute, follow these st
 
 Have questions or suggestions? Feel free to reach out to us at [payriz24@gmail.com](mailto:payriz24@gmail.com).
 
-Special thanks to [Muwanguzi Joshua](https://github.com/Joshuamjv2), [Segun Lawal](https://github.com/segunlawal), Chidimma Ojengwa our PME  and [Ladejobi Moses Olukoya](https://github.com/Mola71) framework and its contributors for making this project possible.
+Special thanks to [Muwanguzi Joshua](https://github.com/Joshuamjv2), [Segun Lawal](https://github.com/segunlawal), Chidimma Ojengwa our PM  and [Ladejobi Moses Olukoya](https://github.com/Mola71) framework and its contributors for making this project possible.
 
