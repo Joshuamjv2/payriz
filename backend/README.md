@@ -67,6 +67,4 @@ This project is licensed under the [MIT License](LICENSE). -->
 
 Special thanks to the [FastAPI](https://fastapi.tiangolo.com/) framework and its contributors for making this project possible. -->
 
----
 
-Feel free to modify this README according to your project's specific details and requirements. Good luck with your FastAPI invoicing application!
