@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Navigate, useLocation } from 'react-router-dom';
 import Sidebar from '../../../components/Sidebar/Sidebar';
-import person from '../../../assets/person.svg';
 import ReadOnlyCalendar from '../../../components/ReadOnlyCalendar';
 import { UserContext } from '../../../context/UserContext';
 import { UserContextData } from '../../../context/type';
@@ -61,10 +60,6 @@ const SendInvoice = () => {
 
   const sendInvoice = async () => {
     //
-    // console.log(state?.values);
-    // console.log(customer);
-
-    console.log(invoicePayLoad);
 
     setIsButtonDisabled(true);
     try {
@@ -158,11 +153,13 @@ const SendInvoice = () => {
             <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
               <h2 className="text-blue font-bold">Client Details</h2>
               <div className="flex gap-2 items-center mt-4">
-                <img src={person} alt="person" />
+                {/* <img src={person} alt="person" /> */}
                 <div>
                   <h3>{state?.values?.customerName}</h3>
                   <p className="text-xs font-light">{customer?.email}</p>
-                  <address className="not-italic">{customer?.address}</address>
+                  <address className="not-italic text-xs font-light">
+                    {customer?.address}
+                  </address>
                 </div>
               </div>
             </div>

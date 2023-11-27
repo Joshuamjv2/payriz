@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import logout from '../../assets/logout.svg';
-import default_pic from '../../assets/default_photo.svg';
+import new_pic from '../../assets/new_pic.svg';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -98,7 +98,7 @@ const Sidebar = () => {
         <img src={logo} alt="Logo" className="w-[50px] mx-auto mt-5" />
       </Link>
       <div className="flex flex-col justify-center items-center mt-7">
-        <img src={default_pic} alt="Profile Picture" className="w-[50px]" />
+        <img src={new_pic} alt="Profile Picture" className="w-[50px]" />
         <p className="pt-2 font-bold text-sm">
           {user?.user?.firstName} {user?.user?.lastName}
         </p>

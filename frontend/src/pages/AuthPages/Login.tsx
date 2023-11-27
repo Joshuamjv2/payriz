@@ -42,7 +42,6 @@ const Login = () => {
       Cookies.set('token', resBody.access_token, { secure: true });
       Cookies.set('refresh-token', resBody.refresh_token, { secure: true });
       toast.success('Login successful');
-      console.log(resBody);
       // axios.defaults.headers.common[
       //   'Authorization'
       // ] = `Bearer ${resBody?.access_token}`;

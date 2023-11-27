@@ -31,8 +31,6 @@ const Contact = () => {
   ) => {
     const { firstName, lastName, email, phoneNumber, message } = values;
 
-    console.log(firstName, lastName, email, phoneNumber, message);
-
     setIsButtonDisabled(true);
     try {
       await axios.post(

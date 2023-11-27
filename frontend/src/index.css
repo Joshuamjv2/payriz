@@ -8,3 +8,6 @@
   box-sizing: border-box;
   font-family: 'Nunito Sans', sans-serif;
 }
+:root {
+  --toastify-color-success: #0075ff;
+}

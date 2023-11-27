@@ -33,7 +33,6 @@ const InvoiceModal = ({
   closeModal: any;
   activeInvoice: any;
 }) => {
-  console.log(activeInvoice);
   return (
     <Modal
       isOpen={modalIsOpen}

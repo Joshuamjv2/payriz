@@ -176,7 +176,6 @@ const WithdrawModal = ({
               placeholderText="Select Account"
               value={values.withdrawMethod}
               onChange={(e: any) => {
-                console.log(e.target.value);
                 setFieldValue('withdrawMethod', e.target.value);
               }}
               width={100}

@@ -53,7 +53,6 @@ const DeleteProfileModal = ({
       navigate('/dashboard');
       toast.success('Profile deleted successfully');
     } catch (error: any) {
-      console.log(error);
       const err = JSON.parse(error.response.data.body);
       toast.error(err.detail);
     }

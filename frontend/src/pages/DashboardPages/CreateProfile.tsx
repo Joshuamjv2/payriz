@@ -74,7 +74,6 @@ const CreateProfile = () => {
 
       setIsButtonDisabled(false);
     } catch (error: any) {
-      console.log(error);
       const err = JSON.parse(error.response.data.body);
       toast.error(err.detail);
       setIsButtonDisabled(false);

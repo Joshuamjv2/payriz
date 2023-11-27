@@ -15,6 +15,7 @@ const Wallet = () => {
   const [bankDetailsModalIsOpen, setBankDetailsModalIsOpen] = useState(false);
   const [withdrawModalIsOpen, setWithdrawModalIsOpen] = useState(false);
   const [storedWallet, setStoredWallet] = useState<any>({});
+  const [isWalletLoading, setIsWalletLoading] = useState(true);
 
   function closeBankModal() {
     setBankDetailsModalIsOpen(false);
@@ -26,6 +27,7 @@ const Wallet = () => {
 
   useEffect(() => {
     const fetchWallets = async () => {
+      setIsWalletLoading(true);
       try {
         const res = await axios.get(`/wallets?owner=${user?.user!._id}`, {
           headers: {
@@ -39,6 +41,7 @@ const Wallet = () => {
           (item: { owner: string }) => item.owner === user?.user!._id,
         );
         setStoredWallet(uniqueWallet);
+        setIsWalletLoading(false);
       } catch (error: any) {
         const err = JSON.parse(error.response.data.body);
         toast.error(err.detail || 'Error fetching wallet');
@@ -47,8 +50,6 @@ const Wallet = () => {
 
     fetchWallets();
   }, [user?.user]);
-
-  // console.log(storedWallet);
 
   return (
     <>
@@ -123,6 +124,11 @@ const Wallet = () => {
               )}
             </tbody>
           </table>
+          {isWalletLoading && (
+            <p className="text-center sm:my-40 my-10 text-gray text-sm">
+              Loading...
+            </p>
+          )}
         </section>
 
         <AddBankDetails

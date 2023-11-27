@@ -69,7 +69,6 @@ const AddBankDetails = ({
     fetchBanks();
   }, [closeModal, user?.user]);
 
-  // console.log(bankDetails);
   const transformedBankDetails = bankDetails?.reduce(
     (uniqueBanks, item) => {
       if (!uniqueBanks.names.has(item.name)) {

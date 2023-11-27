@@ -1,5 +1,5 @@
 import Modal, { Styles } from 'react-modal';
-import person2 from '../../../assets/person2.svg';
+import default_big from '../../../assets/default_big.svg';
 import { UserContextData } from '../../../context/type';
 import { UserContext } from '../../../context/UserContext';
 import { useContext } from 'react';
@@ -14,7 +14,7 @@ const customStyles: Styles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     borderRadius: '8px',
-    padding: '6px 10px',
+    padding: '10px 10px',
   },
   overlay: {
     position: 'fixed',
@@ -56,7 +56,7 @@ const ViewProfileModal = ({
       >
         x
       </button>
-      <img src={person2} alt="profile picture" />
+      <img src={default_big} alt="profile picture" />
       <h2 className="pt-4 font-bold text-lg">{customerInfo?.name}</h2>
       <p className="pt-2 text-gray">{customerInfo?.email}</p>
       <address className="pt-3 text-gray not-italic">

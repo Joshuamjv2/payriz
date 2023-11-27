@@ -2,9 +2,7 @@ import { useContext, useState } from 'react';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import { UserContext } from '../../../context/UserContext';
 import { UserContextData } from '../../../context/type';
-// import { useNavigate } from 'react-router-dom';
 import { convertTimestampToFormattedDate } from '../../../helpers';
-import person from '../../../assets/person.svg';
 import eyeIcon from '../../../assets/eye.svg';
 import deleteIcon from '../../../assets/delete.svg';
 import ViewProfileModal from './ViewProfileModal';
@@ -59,11 +57,6 @@ const Profiles = () => {
                   onClick={() => handleViewOpening(customer.id)}
                 >
                   <td className="flex items-center gap-x-2 whitespace-nowrap">
-                    <img
-                      src={person}
-                      alt="person"
-                      className="sm:block hidden"
-                    />
                     {customer.name}
                   </td>
                   <td>{customer.email}</td>
@@ -78,7 +71,7 @@ const Profiles = () => {
                       <img
                         src={deleteIcon}
                         alt="Delete"
-                        className="w-3 max-w-[12px] block sm:mb-4"
+                        className="w-3 max-w-[12px] block"
                       />
                     </button>
                     <button
@@ -88,7 +81,7 @@ const Profiles = () => {
                       <img
                         src={eyeIcon}
                         alt="View"
-                        className="w-3 max-w-[12px] block sm:mb-4"
+                        className="w-3 max-w-[12px] block"
                       />
                     </button>
                   </td>

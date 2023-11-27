@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { useContext } from 'react';
 import Sidebar from '../components/Sidebar/Sidebar';
 import TopBar from '../components/TopBar';
@@ -12,13 +11,11 @@ import {
   convertTimestampToFormattedDate,
   formatDateToShortForm,
 } from '../helpers';
-import person from '../assets/person.svg';
+// import person from '../assets/person.svg';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const user: UserContextData = useContext(UserContext);
-
-  console.log(user);
 
   return (
     <>
@@ -33,7 +30,7 @@ const Dashboard = () => {
           <section>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
-                <h2 className="text-blue font-bold">Create a Profile</h2>
+                <h2 className="text-blue font-bold">Add Customer</h2>
                 <p className="text-gray text-sm font-light pt-2">
                   Click here to create a profile
                 </p>
@@ -43,7 +40,7 @@ const Dashboard = () => {
                   onClick={() => navigate('/dashboard/create-profile')}
                 >
                   <img src={create_white} alt="create" />
-                  Create Profile
+                  Add Customer
                 </button>
               </div>
               <div className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
@@ -110,7 +107,7 @@ const Dashboard = () => {
 
           <section className="bg-white rounded-lg py-5 sm:px-11 px-5 shadow-sm">
             <div className="flex justify-between items-center">
-              <h2 className="text-blue font-bold">List of Profiles</h2>
+              <h2 className="text-blue font-bold">List of Customers</h2>
               <button
                 type="button"
                 onClick={() => navigate('/dashboard/profiles')}
@@ -130,11 +127,11 @@ const Dashboard = () => {
                 {user?.customers?.slice(0, 8).map((customer) => (
                   <tr key={customer.id} className="[&>*]:py-2 text-sm">
                     <td className="flex items-center gap-x-2">
-                      <img
+                      {/* <img
                         src={person}
                         alt="person"
                         className="sm:block hidden"
-                      />
+                      /> */}
                       {customer.name}
                     </td>
                     <td>{customer.email}</td>

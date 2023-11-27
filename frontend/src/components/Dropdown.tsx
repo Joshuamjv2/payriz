@@ -29,7 +29,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   return (
     <div className="relative mb-4">
-      <label htmlFor={name} className="font-semibold text-blue">
+      <label htmlFor={name} className="font-semibold">
         {label}
       </label>
       <select
