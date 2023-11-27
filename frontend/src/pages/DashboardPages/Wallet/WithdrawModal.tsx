@@ -7,14 +7,13 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import Dropdown from './Dropdown';
-import { UserContext } from '../../../context/UserContext';
 import { UserContextData } from '../../../context/type';
-
-const bankDetailsSchema = Yup.object().shape({
-  accountName: Yup.string().required('Account name is required'),
-  accountNumber: Yup.string().required('Account Number is required'),
-  bankName: Yup.string().required('Bank Name is required'),
-});
+import { UserContext } from '../../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+// import { UserContextData } from '../../../context/type';
+// import { UserContext } from '../../../context/UserContext';
+// import { useContext } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 const customStyles: Styles = {
   content: {
@@ -35,21 +34,24 @@ const customStyles: Styles = {
   },
 };
 
-const AddBankDetails = ({
+const WithdrawModal = ({
   modalIsOpen,
   closeModal,
+  storedWallet,
 }: {
   modalIsOpen: any;
   closeModal: any;
+  storedWallet: any;
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [bankDetails, setBankDetails] = useState<any[]>([]);
+  const [storedBankDetails, setBankDetails] = useState<any[]>([]);
   const user: UserContextData = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchBanks = async () => {
+    const fetchStoredBanks = async () => {
       try {
-        const res = await axios.get(`/payouts/banks`, {
+        const res = await axios.get(`/payouts?owner=${user?.user!._id}`, {
           headers: {
             'Authorization': `Bearer ${Cookies.get('token')}`,
           },
@@ -61,56 +63,56 @@ const AddBankDetails = ({
         // setUserId(_id);
       } catch (error: any) {
         const err = JSON.parse(error.response.data.body);
-        toast.error(err.detail || 'Error fetching banks');
+        toast.error(err.detail || 'Error fetching bank details');
         closeModal();
       }
     };
 
-    fetchBanks();
+    fetchStoredBanks();
   }, [closeModal, user?.user]);
 
-  // console.log(bankDetails);
-  const transformedBankDetails = bankDetails?.reduce(
-    (uniqueBanks, item) => {
-      if (!uniqueBanks.names.has(item.name)) {
-        uniqueBanks.names.add(item.name);
+  const withdrawSchema = Yup.object().shape({
+    amount: Yup.number()
+      .typeError('Amount must be a number')
+      .required('Amount is required')
+      .max(
+        storedWallet?.balance,
+        `Amount must be greater than or equal to your balance`,
+      ),
+    withdrawMethod: Yup.string().required('Valid account is required'),
+    reason: Yup.string().required('Reason is required'),
+  });
 
-        uniqueBanks.result.push({
-          value: item.name,
-          label: item.name,
-          bank_name: item.name,
-          bank_code: item.code,
-          bank_type: item.type,
-        });
-      }
+  const transformedBankDetails = storedBankDetails?.map((item) => ({
+    name: `${item.bank} - ${item.name}`,
+    label: `${item.bank} - ${item.name}`,
+    value: `${item.bank} - ${item.name}`,
+    id: item.id,
+    bank_name: item.bank,
+  }));
 
-      return uniqueBanks;
-    },
-    { names: new Set(), result: [] },
-  ).result;
+  //   const user: UserContextData = useContext(UserContext);
+  //   const navigate = useNavigate();
 
   const handleCreateDetails = async (values: {
-    accountName: string;
-    accountNumber: string;
-    bankName: string;
+    amount: string;
+    withdrawMethod: string;
+    reason: string;
   }) => {
-    const { accountName, accountNumber, bankName } = values;
+    const { amount, withdrawMethod, reason } = values;
 
     const bankInfo = transformedBankDetails?.find(
-      (item: { bank_name: string }) => item.bank_name === bankName,
+      (item: { value: string }) => item.value === withdrawMethod,
     );
 
     setIsButtonDisabled(true);
     try {
       await axios.post(
-        `/payouts?owner=${user?.user!._id}`,
+        `/payouts/request_payout?payout_account_id=${bankInfo?.id}`,
         {
-          account_number: String(accountNumber),
-          account_name: accountName,
-          bank_code: bankInfo?.bank_code,
-          bank_name: bankName,
-          bank_type: bankInfo?.bank_type,
-          currency: 'NGN',
+          reason,
+          amount,
+          from_wallet_id: storedWallet?.id,
         },
         {
           headers: {
@@ -119,7 +121,8 @@ const AddBankDetails = ({
         },
       );
       closeModal();
-      toast.success('Bank Details added successfully');
+      navigate('/dashboard');
+      toast.success('Withdrawal successful');
 
       setIsButtonDisabled(false);
     } catch (error: any) {
@@ -143,52 +146,57 @@ const AddBankDetails = ({
       >
         x
       </button>
-      <h2 className="text-blue font-bold">Add Bank Details</h2>
-      <p className="text-gray font-light text-sm">
-        Kindly provide your bank details
-      </p>
+      <h2 className="text-blue font-bold">Request Withdrawl</h2>
 
+      {storedBankDetails.length === 0 && (
+        <p className="text-gray text-sm font-light pt-2">
+          You need to add a bank account before you can withdraw
+        </p>
+      )}
       <Formik
         initialValues={{
-          accountName: '',
-          accountNumber: '',
-          bankName: '',
+          amount: '',
+          withdrawMethod: '',
+          reason: '',
         }}
-        validationSchema={bankDetailsSchema}
+        validationSchema={withdrawSchema}
         onSubmit={handleCreateDetails}
       >
         {({ values, setFieldValue }) => (
           <Form className="mx-auto mt-5">
             <InputField
-              label="Account Name"
-              name="accountName"
-              type="text"
-              width="w-full"
-            />
-            <InputField
-              label="Account Number"
-              name="accountNumber"
+              label="Payout Amount (in Naira)"
+              name="amount"
               type="number"
               width="w-full"
             />
             <Dropdown
-              name="bankName"
-              label="Bank Name"
-              placeholderText="Bank Name"
-              value={values.bankName}
+              name="withdrawMethod"
+              label="Select Account"
+              placeholderText="Select Account"
+              value={values.withdrawMethod}
               onChange={(e: any) => {
-                setFieldValue('bankName', e.target.value);
+                console.log(e.target.value);
+                setFieldValue('withdrawMethod', e.target.value);
               }}
               width={100}
               options={transformedBankDetails}
             />
+            <div className="mt-3">
+              <InputField
+                label="Reason for Withdrawal"
+                name="reason"
+                type="text"
+                width="w-full"
+              />
+            </div>
 
             <button
               disabled={isButtonDisabled}
               type="submit"
               className="mt-5 mx-auto w-full bg-blue disabled:bg-gray px-10 justify-center flex text-[#ffffff] font-bold py-[10px] rounded-md"
             >
-              Add Bank
+              Request Withdrawal
             </button>
           </Form>
         )}
@@ -197,4 +205,4 @@ const AddBankDetails = ({
   );
 };
 
-export default AddBankDetails;
+export default WithdrawModal;

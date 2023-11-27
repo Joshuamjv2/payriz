@@ -10,6 +10,7 @@ import { UserContext } from '../context/UserContext';
 import {
   calculateTotalAmount,
   convertTimestampToFormattedDate,
+  formatDateToShortForm,
 } from '../helpers';
 import person from '../assets/person.svg';
 
@@ -17,7 +18,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const user: UserContextData = useContext(UserContext);
 
-  // console.log(user);
+  console.log(user);
 
   return (
     <>
@@ -85,7 +86,9 @@ const Dashboard = () => {
                     <tr key={invoice.id} className="[&>*]:py-5 text-sm">
                       <td>{invoice.invoice_number}</td>
                       <td>{calculateTotalAmount(invoice.items)}</td>
-                      <td className="flex justify-end">{invoice.due_date}</td>
+                      <td className="flex justify-end">
+                        {formatDateToShortForm(invoice.due_date)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -122,7 +125,7 @@ const Dashboard = () => {
                 <tr className="[&>*]:text-left text-gray text-sm">
                   <th>Name</th>
                   <th>Contact Information</th>
-                  <th className="flex justify-end">Date Created</th>
+                  <th className="flex justify-end">Date Issued</th>
                 </tr>
                 {user?.customers?.slice(0, 8).map((customer) => (
                   <tr key={customer.id} className="[&>*]:py-2 text-sm">

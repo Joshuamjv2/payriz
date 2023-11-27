@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import logout from '../../assets/logout.svg';
-import profile_pic from '../../assets/profile-pic.svg';
+import default_pic from '../../assets/default_photo.svg';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -48,13 +48,13 @@ const Sidebar = () => {
       current: location.pathname === '/dashboard' || location.pathname === '/',
     },
     {
-      name: 'Create Customer',
+      name: 'Add Customer',
       href: '/dashboard/create-profile',
       icon: create,
       current: location.pathname === '/dashboard/create-profile',
     },
     {
-      name: 'List of Customers',
+      name: 'Customers',
       href: '/dashboard/profiles',
       icon: list,
       current: location.pathname === '/dashboard/profiles',
@@ -68,7 +68,7 @@ const Sidebar = () => {
         location.pathname === '/dashboard/attach-invoice/send',
     },
     {
-      name: 'All Invoices',
+      name: 'Invoices',
       href: '/dashboard/invoices',
       icon: view,
       current:
@@ -98,7 +98,7 @@ const Sidebar = () => {
         <img src={logo} alt="Logo" className="w-[50px] mx-auto mt-5" />
       </Link>
       <div className="flex flex-col justify-center items-center mt-7">
-        <img src={profile_pic} alt="Profile Picture" className="w-[50px]" />
+        <img src={default_pic} alt="Profile Picture" className="w-[50px]" />
         <p className="pt-2 font-bold text-sm">
           {user?.user?.firstName} {user?.user?.lastName}
         </p>
