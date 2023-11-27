@@ -100,7 +100,7 @@ const Sidebar = () => {
       <div className="flex flex-col justify-center items-center mt-7">
         <img src={new_pic} alt="Profile Picture" className="w-[50px]" />
         <p className="pt-2 font-bold text-sm">
-          {user?.user?.firstName} {user?.user?.lastName}
+          {user?.user?.firstName} {user?.user?.businessName}
         </p>
         <button disabled className="mt-1 text-xs font-semibold text-white">
           Edit profile

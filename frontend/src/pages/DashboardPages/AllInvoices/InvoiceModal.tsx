@@ -56,7 +56,9 @@ const InvoiceModal = ({
         </div>
         <div className="bg-blue bg-opacity-25 rounded-lg mt-7 py-3 px-5 flex gap-x-10 justify-between">
           <div>
-            <h2 className="font-bold text-[13px]">Invoice Number</h2>
+            <h2 className="font-bold text-[13px]">
+              {activeInvoice?.owner?.business_name}
+            </h2>
             <div className="mt-3 text-xs font-light">
               <p>{activeInvoice?.invoice_number}</p>
               <p>

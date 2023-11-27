@@ -33,8 +33,9 @@ const Context = ({ children }: Props) => {
         const firstName = resBody.first_name;
         const lastName = resBody.last_name;
         const _id = resBody._id;
+        const businessName = resBody.business_name;
 
-        setUser({ firstName, lastName, _id });
+        setUser({ firstName, lastName, _id, businessName });
         setUserId(_id);
       } catch (error: any) {
         const err = JSON.parse(error.response.data.body);

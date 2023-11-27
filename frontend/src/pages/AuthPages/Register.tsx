@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import heroImg from '../../assets/woman-hero.svg';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Modal from 'react-modal';
+import success from '../../assets/success.svg';
 
 const RegisterSchema = Yup.object().shape({
   firstName: Yup.string().required('First Name is required'),
   lastName: Yup.string().required('Last Name is required'),
+  businessName: Yup.string().required('Business Name is required'),
   email: Yup.string()
     .email('Invalid email')
     .required('Please enter your email address'),
@@ -19,15 +22,31 @@ const RegisterSchema = Yup.object().shape({
 
 const Register = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      borderRadius: '8px',
+      padding: '44px 64px',
+    },
+  };
 
   const register = async (values: {
     firstName: string;
     lastName: string;
+    businessName: string;
     email: string;
     phoneNumber: string;
     password: string;
   }) => {
-    const { firstName, lastName, email, phoneNumber, password } = values;
+    const { firstName, lastName, email, phoneNumber, password, businessName } =
+      values;
     setIsButtonDisabled(true);
     try {
       await axios.post(
@@ -35,14 +54,13 @@ const Register = () => {
         {
           first_name: firstName,
           last_name: lastName,
+          business_name: businessName,
           email,
           phone_number: phoneNumber,
           password,
         },
       );
-      toast.success('Please check your email address to continue', {
-        autoClose: 50000,
-      });
+      setSuccessModalIsOpen(true);
 
       setIsButtonDisabled(false);
     } catch (error: any) {
@@ -62,6 +80,7 @@ const Register = () => {
           initialValues={{
             firstName: '',
             lastName: '',
+            businessName: '',
             email: '',
             phoneNumber: '',
             password: '',
@@ -73,6 +92,11 @@ const Register = () => {
             <Form className="flex flex-col mx-auto mt-5">
               <InputField label="First Name" name="firstName" type="text" />
               <InputField label="Last Name" name="lastName" type="text" />
+              <InputField
+                label="Business Name"
+                name="businessName"
+                type="text"
+              />
               <InputField label="Email address" name="email" type="email" />
               <InputField label="Phone Number" name="phoneNumber" type="tel" />
               <InputField
@@ -111,6 +135,27 @@ const Register = () => {
         alt="Woman leaning on table"
         className="xl:block hidden"
       />
+
+      <Modal
+        isOpen={successModalIsOpen}
+        onRequestClose={() => setSuccessModalIsOpen(false)}
+        style={customStyles}
+        contentLabel="Success Modal"
+        appElement={document.getElementById('root') || undefined}
+      >
+        {/* <button
+          onClick={() => setSuccessModalIsOpen(false)}
+          className="absolute top-5 right-5"
+        >
+          X
+        </button> */}
+        <img src={success} alt="Success" className="mx-auto" />
+        <h2 className="font-bold pt-2 text-center">Successful</h2>
+        <p className="text-gray text-sm pt-2 text-center">
+          You have created an account successfully. Please check your email
+          address to verify your account
+        </p>
+      </Modal>
     </div>
   );
 };
