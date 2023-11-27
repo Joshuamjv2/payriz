@@ -1,6 +1,6 @@
 # PAYRIZ: Simplifying Your Business Payment
 
-![PAYRIZ Logo]([link/to/your/logo.png](https://payriz.vercel.app/assets/logo-0g-c7GYW.svg))
+![PAYRIZ Logo](https://payriz.vercel.app/assets/logo-0g-c7GYW.svg)
 
 PAYRIZ is an intuitive platform designed to simplify the payment process for small businesses. It offers effortless invoicing, quick payments, and seamless financial management.
 
