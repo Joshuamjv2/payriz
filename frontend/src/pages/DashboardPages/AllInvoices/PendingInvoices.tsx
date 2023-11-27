@@ -28,7 +28,7 @@ const PendingInvoices = () => {
             <th className="whitespace-nowrap">Invoice #</th>
             <th className="whitespace-nowrap">Customer Name</th>
             <th className="whitespace-nowrap">Amount (in Naira)</th>
-            <th className="whitespace-nowrap">Date Created</th>
+            <th className="whitespace-nowrap">Due Date</th>
             <th className="" />
           </tr>
 

@@ -3,6 +3,7 @@ export interface UserContextData {
     firstName?: string;
     lastName?: string;
     _id?: string;
+    businessName?: string;
   };
   customers?: any[];
   invoices?: any[];

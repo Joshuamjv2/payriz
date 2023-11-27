@@ -44,6 +44,7 @@ const SendInvoice = () => {
     owner: {
       owner_id: user?.user?._id,
       name: `${user?.user?.firstName} ${user?.user?.lastName}`,
+      business_name: user?.user?.businessName,
     },
     due_date: formatShortDate(state?.values?.dueDate),
     invoice_date: formatShortDate(state?.values?.issueDate),
@@ -94,7 +95,9 @@ const SendInvoice = () => {
             </h2>
             <div className="bg-blue bg-opacity-25 rounded-lg mt-7 py-3 px-5 flex justify-between">
               <div>
-                <h2 className="font-bold text-[13px]">Invoice Number</h2>
+                <h2 className="font-bold text-[13px]">
+                  {user?.user?.businessName}
+                </h2>
                 <div className="mt-3 text-xs font-light">
                   <p>{state?.values?.invoiceNumber}</p>
                   <p>Issued Date: {state?.values?.issueDate}</p>
