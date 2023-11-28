@@ -17,6 +17,7 @@ import OverdueInvoices from './pages/DashboardPages/AllInvoices/OverdueInvoices'
 import PendingInvoices from './pages/DashboardPages/AllInvoices/PendingInvoices';
 import PaidInvoices from './pages/DashboardPages/AllInvoices/PaidInvoices';
 import LandingPage from './pages/LandingPage/LandingPage';
+import PublicRoute from './hooks/PublicRoute';
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
       <ToastContainer />
       <Routes>
         <Route path="/payment-status" element={<PaymentStatus />} />
-        <Route path="/" element={<LandingPage />} />
+
+        <Route path="" element={<PublicRoute />}>
+          <Route path="/" element={<LandingPage />} />
+        </Route>
         <Route path="" element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/create-profile" element={<CreateProfile />} />

@@ -1,11 +1,16 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import Cookies from 'js-cookie';
+import { UserContextData } from '../context/type';
+import { UserContext } from '../context/UserContext';
 
 export default function NavBar() {
   const navMenu = useRef(null);
   const [navbar, setNavbar] = useState(false);
+  const user: UserContextData = useContext(UserContext);
+
+  console.log(user);
 
   const isAuthenticated = !!Cookies.get('token');
 
@@ -99,7 +104,11 @@ export default function NavBar() {
             </ul>
 
             <div className="mt-5 space-y-2 lg:hidden flex flex-col">
-              {!isAuthenticated && (
+              {isAuthenticated ? (
+                <p className="font-semibold py-2 px-4  text-black rounded-md leading-5">
+                  Welcome, {user?.user?.businessName}
+                </p>
+              ) : (
                 <Link
                   to="/login"
                   className="font-semibold py-2 px-4  text-black rounded-md leading-5"
@@ -127,7 +136,11 @@ export default function NavBar() {
           </div>
         </div>
         <div className="hidden gap-x-3 lg:flex ">
-          {!isAuthenticated && (
+          {isAuthenticated ? (
+            <p className="font-semibold py-2 px-4  text-black rounded-md leading-5">
+              Welcome, {user?.user?.businessName}
+            </p>
+          ) : (
             <Link
               to="/login"
               className="font-semibold py-2 px-4  text-black rounded-md leading-5"
