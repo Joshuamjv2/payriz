@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
-import LoadingSpinner from '../components/Spinner/LoadingSpinner';
 
 interface Props {
   children: ReactNode;
@@ -93,7 +92,8 @@ const Context = ({ children }: Props) => {
     <UserContext.Provider
       value={{ user, customers, isProfileLoading, invoices, isInvoiceLoading }}
     >
-      {Object.keys(user).length !== 0 ? children : <LoadingSpinner />}
+      {/* {Object.keys(user).length !== 0 ? children : <LoadingSpinner />} */}
+      {children}
     </UserContext.Provider>
   );
 };
