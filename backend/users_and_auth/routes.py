@@ -24,6 +24,7 @@ async def signup(user: User, redirect_url: str, request: Request):
     user = user.dict(exclude_none=True)
     user["_id"] = id
     user["password"] = hashed_password
+    user["invoice_number"] = 0
 
     base_url = request.url_for("confirm_verification_token")
     token = create_user_encrypted_token(user["email"].lower())

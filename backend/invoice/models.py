@@ -26,6 +26,7 @@ class To(BaseModel):
 class From(BaseModel):
     owner_id: str
     name: str
+    business_name: str
 
 class Invoice(BaseModel):
     status: Status
@@ -35,10 +36,11 @@ class Invoice(BaseModel):
     due_date: str
     invoice_date: str
     items: List[InvoiceItem]
-    currency: str = "USD"
+    currency: str = "NGN"
     tax: int = 0
     redirect_url: str
     wallet: str = None
+    created: datetime = datetime.utcnow()
 
 
 

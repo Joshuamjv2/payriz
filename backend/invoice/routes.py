@@ -13,13 +13,14 @@ router = APIRouter()
 async def create_invoice(invoice: Invoice, request: Request):
     invoice_id = str(uuid4())
     invoice = invoice.dict()
+    
 
     invoice_pdf_url = create_invoice_pdf(data={
         "due_date": invoice["due_date"],
         "date": invoice["invoice_date"],
         "items": list(invoice["items"]),
         "to": invoice["customer"]["name"],
-        "from": invoice["owner"]["name"],
+        "from": invoice["owner"].get("business_name") or invoice["owner"]["name"],
         "currency": invoice["currency"] or "USD",
         "tax": invoice["tax"],
         "invoice_number": invoice["invoice_number"]

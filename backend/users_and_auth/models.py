@@ -8,6 +8,7 @@ class User(BaseModel):
     password: constr(min_length=8)
     phone_number: str = None
     is_owner: bool = True
+    business_name: str
     is_active: bool = False
     is_verified: bool = False
     position: str = None
@@ -18,6 +19,7 @@ class UpdateUser(BaseModel):
     first_name: str = None
     last_name: str = None
     position: str = None
+    business_name: str = None
     confirm_password: str = None
     updated: datetime = datetime.utcnow()
 
