@@ -97,7 +97,7 @@ const Wallet = () => {
                 <th className="flex justify-end">Date</th>
               </tr>
 
-              {storedWallet.history?.map(
+              {storedWallet?.history?.map(
                 (
                   transaction: {
                     total: any;

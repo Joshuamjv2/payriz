@@ -45,7 +45,10 @@ const Sidebar = () => {
       name: 'Dashboard',
       href: '/dashboard',
       icon: home,
-      current: location.pathname === '/dashboard' || location.pathname === '/',
+      current:
+        location.pathname === '/dashboard' ||
+        location.pathname === '/dashboard/' ||
+        location.pathname === '/',
     },
     {
       name: 'Add Customer',
