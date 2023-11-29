@@ -106,7 +106,7 @@ export default function NavBar() {
             <div className="mt-5 space-y-2 lg:hidden flex flex-col">
               {isAuthenticated ? (
                 <p className="font-semibold py-2 px-4  text-black rounded-md leading-5">
-                  Welcome, {user?.user?.businessName}
+                  Welcome {user?.user?.businessName}
                 </p>
               ) : (
                 <Link
@@ -138,7 +138,7 @@ export default function NavBar() {
         <div className="hidden gap-x-3 lg:flex ">
           {isAuthenticated ? (
             <p className="font-semibold py-2 px-4  text-black rounded-md leading-5">
-              Welcome, {user?.user?.businessName}
+              Welcome {user?.user?.businessName}
             </p>
           ) : (
             <Link

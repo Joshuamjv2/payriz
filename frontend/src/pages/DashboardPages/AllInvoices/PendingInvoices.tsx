@@ -1,7 +1,11 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../../../context/UserContext';
 import { UserContextData } from '../../../context/type';
-import { calculateTotalAmount, getPendingInvoices } from '../../../helpers';
+import {
+  calculateTotalAmount,
+  formatDateToShortForm,
+  getPendingInvoices,
+} from '../../../helpers';
 import eye from '../../../assets/eye.svg';
 import InvoiceModal from './InvoiceModal';
 
@@ -41,7 +45,9 @@ const PendingInvoices = () => {
               <td className="font-bold">{invoice.invoice_number}</td>
               <td>{invoice.customer.name}</td>
               <td>{calculateTotalAmount(invoice.items)}</td>
-              <td className="whitespace-nowrap">{invoice.due_date}</td>
+              <td className="whitespace-nowrap">
+                {formatDateToShortForm(invoice.due_date)}
+              </td>
               <td className="flex justify-end">
                 <button type="button" className="flex items-center">
                   <img

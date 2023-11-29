@@ -48,7 +48,9 @@ const PaidInvoices = () => {
               <td>{invoice.customer.name}</td>
               <td>{calculateTotalAmount(invoice.items)}</td>
               <td>{formatDateToShortForm(invoice.date_paid)}</td>
-              <td className="whitespace-nowrap">{invoice.due_date}</td>
+              <td className="whitespace-nowrap">
+                {formatDateToShortForm(invoice.due_date)}
+              </td>
               <td className="flex justify-end">
                 <button type="button" className="flex items-center">
                   <img

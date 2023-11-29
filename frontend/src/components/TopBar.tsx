@@ -12,7 +12,7 @@ const TopBar = () => {
   return (
     <div className="flex items-center justify-between">
       <h1 className="text-blue font-bold text-xl">
-        Welcome back, {user?.user?.businessName}{' '}
+        Welcome back{user?.user?.businessName && ','} {user?.user?.businessName}{' '}
       </h1>
 
       <div className="flex items-center gap-5">
