@@ -129,6 +129,12 @@ const Wallet = () => {
               Loading...
             </p>
           )}
+
+          {storedWallet?.history?.length === 0 && !isWalletLoading && (
+            <p className="text-center sm:my-40 my-10 text-gray text-sm">
+              No transaction yet
+            </p>
+          )}
         </section>
 
         <AddBankDetails

@@ -10,8 +10,6 @@ export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const user: UserContextData = useContext(UserContext);
 
-  console.log(user);
-
   const isAuthenticated = !!Cookies.get('token');
 
   return (

@@ -121,7 +121,7 @@ const Dashboard = () => {
                 <tr className="[&>*]:text-left text-gray text-sm">
                   <th>Name</th>
                   <th>Contact Information</th>
-                  <th className="flex justify-end">Date Issued</th>
+                  <th className="flex justify-end">Date Added</th>
                 </tr>
                 {user?.customers?.slice(0, 8).map((customer) => (
                   <tr key={customer.id} className="[&>*]:py-2 text-sm">

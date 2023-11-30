@@ -146,7 +146,7 @@ const SendInvoice = () => {
               <div className="mt-5 flex justify-end">
                 <div className="flex gap-20 font-semibold text-xs border-t-[1px] border-t-gray pt-2">
                   <p>Total</p>
-                  <p>{calculateTotal(state?.values?.products)}</p>
+                  <p>₦{calculateTotal(state?.values?.products)}</p>
                 </div>
               </div>
             </div>

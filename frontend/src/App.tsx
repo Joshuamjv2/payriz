@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/AuthPages/Login';
 import Register from './pages/AuthPages/Register';
+import ForgotPassword from './pages/AuthPages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +19,7 @@ import PendingInvoices from './pages/DashboardPages/AllInvoices/PendingInvoices'
 import PaidInvoices from './pages/DashboardPages/AllInvoices/PaidInvoices';
 import LandingPage from './pages/LandingPage/LandingPage';
 import PublicRoute from './hooks/PublicRoute';
+import ResetPassword from './pages/AuthPages/ResetPassword';
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
         <Route path="" element={<AuthRoute />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
         <Route path="*" element={<LandingPage />} />
       </Routes>

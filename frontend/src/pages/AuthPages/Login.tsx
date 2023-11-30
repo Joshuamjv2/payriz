@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import InputField from '../../components/InputField';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import heroImg from '../../assets/woman-hero.svg';
 import welcome from '../../assets/welcome-hand.svg';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
@@ -19,6 +20,9 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const navigate = useNavigate();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [searchParams] = useSearchParams();
+  const verificationEmail = searchParams.get('email');
+
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
@@ -39,6 +43,8 @@ const Login = () => {
         },
       );
       const resBody = JSON.parse(res.data.body);
+
+      // API request needs to be from the same domain to set as secure (for iOs, Safari and)
       Cookies.set('token', resBody.access_token, { secure: true });
       Cookies.set('refresh-token', resBody.refresh_token, { secure: true });
       toast.success('Login successful');
@@ -70,7 +76,7 @@ const Login = () => {
         </h1>
         <Formik
           initialValues={{
-            email: '',
+            email: verificationEmail || '',
             password: '',
           }}
           validationSchema={LoginSchema}
@@ -85,7 +91,12 @@ const Login = () => {
                 passwordInput={true}
               />
 
-              {/* <p className="text-gray text-[13px] text-end">Forgot password?</p> */}
+              <Link
+                to="/forgot-password"
+                className="text-end text-gray text-sm"
+              >
+                Forgot password?
+              </Link>
 
               <button
                 disabled={isButtonDisabled}
