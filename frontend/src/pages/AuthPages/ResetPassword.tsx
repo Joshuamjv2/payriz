@@ -39,7 +39,9 @@ const ResetPassword = () => {
       const resBody = JSON.parse(res.data.body);
       console.log(resBody);
       toast.success('Password reset successful');
-      navigate('/login');
+      navigate('/login', {
+        state: { email },
+      });
       setIsButtonDisabled(false);
     } catch (error: any) {
       const err = JSON.parse(error.response.data.body);

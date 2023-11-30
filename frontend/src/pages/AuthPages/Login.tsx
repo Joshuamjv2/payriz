@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import InputField from '../../components/InputField';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import heroImg from '../../assets/woman-hero.svg';
 import welcome from '../../assets/welcome-hand.svg';
 import axios from 'axios';
@@ -19,9 +19,11 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [searchParams] = useSearchParams();
   const verificationEmail = searchParams.get('email');
+  const { state } = location;
 
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -76,7 +78,7 @@ const Login = () => {
         </h1>
         <Formik
           initialValues={{
-            email: verificationEmail || '',
+            email: verificationEmail || state?.email || '',
             password: '',
           }}
           validationSchema={LoginSchema}
